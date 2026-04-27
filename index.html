@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca de E-books - Família Unida</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #3498db;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        /* Container da Galeria */
+        .galeria-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Card do E-book */
+        .ebook-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .ebook-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .ebook-card img {
+            width: 80%;
+            height: 300px;
+            object-fit: cover; /* Mantém a proporção da imagem */
+        }
+
+        .info {
+            padding: 15px;
+        }
+
+        .info h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+            height: 40px; /* Limita o tamanho do texto */
+            overflow: hidden;
+        }
+
+        /* Botão de Link */
+        .btn-link {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-link:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Biblioteca de E-books do grupo Família unida</h1>
+
+    <div class="galeria-container">
+        
+        <div class="ebook-card">
+            <img src="pic/kaluanda/kaluanda_40_mais.jpg" alt="Kaluanda 40+">
+            <div class="info">
+                <h3>KaLuanda 40+</h3>
+                <p>Guia do Homem Angolano Moderno para Navegarna Crise da Meia-Idade</p>
+                <a href="kaluanda.html" target="_blank" class="btn-link">Acessar E-book</a>
+            </div>
+        </div>
+
+        <div class="ebook-card">
+            <img src="https://via.placeholder.com/300x400?text=Ebook+2" alt="Brevemente E-book 2">
+            <div class="info">
+                <h3>Gestão de Tempo</h3>
+                <p>Como organizar o dia a dia para ter mais qualidade de vida.</p>
+                <a href="#" target="_blank" class="btn-link">Acessar E-book</a>
+            </div>
+        </div>
+
+        <div class="ebook-card">
+            <img src="https://via.placeholder.com/300x400?text=Ebook+3" alt="Brevemente E-book 3">
+            <div class="info">
+                <h3>Finanças Pessoais</h3>
+                <p>Guia prático para economizar e investir no futuro da família.</p>
+                <a href="#" target="_blank" class="btn-link">Acessar E-book</a>
+            </div>
+        </div>
+
+        <div class="ebook-card">
+            <img src="https://via.placeholder.com/300x400?text=Ebook+4" alt="Brevemente E-book 4">
+            <div class="info">
+                <h3>Culinária Saudável</h3>
+                <p>Receitas rápidas e nutritivas para todos os gostos.</p>
+                <a href="#" target="_blank" class="btn-link">Acessar E-book</a>
+            </div>
+        </div>
+
+        <div class="ebook-card">
+            <img src="https://via.placeholder.com/300x400?text=Ebook+5" alt="Brevemente E-book 5">
+            <div class="info">
+                <h3>Bem-estar Mental</h3>
+                <p>Práticas de mindfulness e relaxamento para o lar.</p>
+                <a href="#" target="_blank" class="btn-link">Acessar E-book</a>
+            </div>
+        </div>
+
+        <div class="ebook-card">
+            <img src="https://via.placeholder.com/300x400?text=Ebook+6" alt="Brevemente E-book 6">
+            <div class="info">
+                <h3>Atividades ao Ar Livre</h3>
+                <p>Ideias divertidas para aproveitar o final de semana.</p>
+                <a href="#" target="_blank" class="btn-link">Acessar E-book</a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+
