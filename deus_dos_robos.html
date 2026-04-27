@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Deus dos Robôs — Quem Criou o Nosso Deus?</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
+
+  :root {
+    --sky: #0a0e2e;
+    --star: #ffe66d;
+    --robot-blue: #4fc3f7;
+    --robot-green: #69f0ae;
+    --robot-pink: #f48fb1;
+    --robot-orange: #ffab40;
+    --bubble: #1a1f4e;
+    --text: #e8eaf6;
+    --accent: #7c4dff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--sky);
+    font-family: 'Nunito', sans-serif;
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* Stars background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, white 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 50%, white 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 50% 10%, white 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 70%, white 0%, transparent 100%),
+      radial-gradient(2px 2px at 85% 30%, #ffe66d 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 80%, white 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 60% 90%, white 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 40%, white 0%, transparent 100%),
+      radial-gradient(2px 2px at 90% 60%, #ffe66d 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 65%, white 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+    animation: twinkle 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes twinkle {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+  }
+
+  .book {
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ========= COVER ========= */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+    position: relative;
+  }
+
+  .cover-badge {
+    background: var(--accent);
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .cover-robot-family {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 32px;
+    font-size: 5rem;
+    filter: drop-shadow(0 0 20px rgba(79,195,247,0.5));
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .cover-robot-family span:nth-child(2) { animation-delay: 0.3s; font-size: 3.5rem; }
+  .cover-robot-family span:nth-child(3) { animation-delay: 0.6s; font-size: 4.5rem; }
+  .cover-robot-family span:nth-child(4) { animation-delay: 0.9s; font-size: 2.8rem; }
+
+  .cover h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
+    line-height: 1.1;
+    color: var(--star);
+    text-shadow: 0 0 30px rgba(255,230,109,0.5);
+    margin-bottom: 12px;
+  }
+
+  .cover h1 .highlight {
+    color: var(--robot-pink);
+    display: block;
+    font-size: clamp(1.4rem, 5vw, 2.2rem);
+  }
+
+  .cover-sub {
+    font-size: 1rem;
+    color: var(--robot-blue);
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+    opacity: 0.9;
+  }
+
+  .planet-earth {
+    font-size: 3.5rem;
+    animation: spin-slow 20s linear infinite;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* ========= PAGE ========= */
+  .page {
+    padding: 40px 24px 60px;
+    position: relative;
+  }
+
+  .chapter-number {
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--robot-green);
+    opacity: 0.7;
+    margin-bottom: 8px;
+  }
+
+  .chapter-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+    color: var(--star);
+    line-height: 1.2;
+    margin-bottom: 28px;
+    text-shadow: 0 0 15px rgba(255,230,109,0.3);
+  }
+
+  /* ========= SCENE ========= */
+  .scene {
+    background: linear-gradient(135deg, rgba(26,31,78,0.9) 0%, rgba(10,14,46,0.9) 100%);
+    border: 1px solid rgba(79,195,247,0.2);
+    border-radius: 20px;
+    padding: 28px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scene::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--robot-blue), transparent);
+  }
+
+  .scene-emoji {
+    font-size: 3rem;
+    display: block;
+    text-align: center;
+    margin-bottom: 16px;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* ========= SPEECH BUBBLES ========= */
+  .dialogue {
+    margin-bottom: 20px;
+  }
+
+  .speech {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+
+  .speech.right {
+    flex-direction: row-reverse;
+  }
+
+  .avatar {
+    font-size: 2rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.3));
+  }
+
+  .bubble {
+    background: var(--bubble);
+    border-radius: 18px;
+    padding: 14px 18px;
+    max-width: 82%;
+    position: relative;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-weight: 600;
+    border: 1px solid rgba(79,195,247,0.15);
+  }
+
+  .speech:not(.right) .bubble { border-top-left-radius: 4px; }
+  .speech.right .bubble { border-top-right-radius: 4px; }
+
+  .bubble.papa { border-color: rgba(79,195,247,0.4); color: #b3e5fc; }
+  .bubble.mama { border-color: rgba(244,143,177,0.4); color: #f8bbd9; }
+  .bubble.filho { border-color: rgba(255,171,64,0.4); color: #ffe0b2; }
+  .bubble.filha { border-color: rgba(105,240,174,0.4); color: #ccff90; }
+  .bubble.avo { border-color: rgba(255,230,109,0.4); color: #fff9c4; }
+  .bubble.narrator { 
+    background: transparent; 
+    border: none; 
+    color: rgba(255,255,255,0.55);
+    font-style: italic;
+    font-size: 0.9rem;
+    max-width: 100%;
+    text-align: center;
+    font-weight: 400;
+  }
+
+  .speaker-name {
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 4px;
+    font-weight: 800;
+  }
+
+  /* ========= FUNNY BOX ========= */
+  .funny-box {
+    background: linear-gradient(135deg, rgba(124,77,255,0.2), rgba(79,195,247,0.1));
+    border: 2px dashed rgba(124,77,255,0.5);
+    border-radius: 16px;
+    padding: 20px;
+    margin: 24px 0;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #e8c9ff;
+    line-height: 1.6;
+  }
+
+  .funny-box .emoji { font-size: 2rem; display: block; margin-bottom: 8px; }
+
+  /* ========= FACT BOX ========= */
+  .fact-box {
+    background: linear-gradient(135deg, rgba(255,171,64,0.15), rgba(255,230,109,0.1));
+    border-left: 4px solid var(--robot-orange);
+    border-radius: 0 16px 16px 0;
+    padding: 18px 20px;
+    margin: 24px 0;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: #ffe0b2;
+  }
+
+  .fact-box strong { color: var(--star); font-size: 1rem; display: block; margin-bottom: 6px; }
+
+  /* ========= DIVIDER ========= */
+  .divider {
+    text-align: center;
+    margin: 40px 0;
+    color: rgba(79,195,247,0.4);
+    font-size: 1.5rem;
+    letter-spacing: 8px;
+  }
+
+  /* ========= PROSE ========= */
+  .prose {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(232,234,246,0.85);
+    margin-bottom: 20px;
+  }
+
+  /* ========= ENDING ========= */
+  .ending {
+    text-align: center;
+    padding: 60px 24px;
+  }
+
+  .ending h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+    color: var(--star);
+    margin-bottom: 20px;
+  }
+
+  .ending .big-emoji { font-size: 5rem; display: block; margin-bottom: 24px; animation: float 2s ease-in-out infinite; }
+
+  .moral {
+    background: linear-gradient(135deg, rgba(124,77,255,0.3), rgba(79,195,247,0.2));
+    border-radius: 20px;
+    padding: 28px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.7;
+    color: #e8eaf6;
+    border: 1px solid rgba(124,77,255,0.4);
+  }
+
+  .moral .star { color: var(--star); font-size: 1.5rem; display: block; margin-bottom: 12px; }
+
+  /* ========= PAGE SEPARATOR ========= */
+  .page-sep {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(79,195,247,0.3), transparent);
+    margin: 0;
+  }
+
+  /* ========= GLITCH TITLE ========= */
+  @keyframes glitch {
+    0%, 100% { text-shadow: 0 0 30px rgba(255,230,109,0.5); }
+    33% { text-shadow: -2px 0 rgba(244,143,177,0.7), 2px 0 rgba(79,195,247,0.7); }
+    66% { text-shadow: 2px 0 rgba(244,143,177,0.7), -2px 0 rgba(79,195,247,0.7); }
+  }
+
+  .cover h1 { animation: glitch 5s ease-in-out infinite; }
+
+</style>
+</head>
+<body>
+<div class="book">
+
+  <!-- ===== COVER ===== -->
+  <div class="cover">
+    <div class="cover-badge">📚 Livro Infantil · Ficção Científica</div>
+    <div class="cover-robot-family" aria-hidden="true">
+      <span>🤖</span><span>🤖</span><span>🤖</span><span>🤖</span>
+    </div>
+    <h1>
+      QUEM CRIOU<br>O NOSSO DEUS?
+      <span class="highlight">A Família RoboFé e o Grande Mistério do Universo</span>
+    </h1>
+    <div class="cover-sub">Uma aventura cósmica cheia de parafusos e perguntas!</div>
+    <span class="planet-earth">🌍</span>
+    <p style="font-size:0.8rem; opacity:0.4; margin-top:16px;">Ano 4.521 d.C. · Planeta Terra</p>
+  </div>
+
+  <hr class="page-sep">
+
+  <!-- ===== CAPÍTULO 1 ===== -->
+  <div class="page">
+    <div class="chapter-number">Capítulo 1</div>
+    <div class="chapter-title">⚡ A Família Mais Normal do Futuro</div>
+
+    <div class="prose">
+      Era um domingo de manhã no ano 4.521, e o Sol continuava a fazer a sua coisa — luzir — tal como havia feito desde sempre. Na Cidade de Nova Lisboa Robótica, a Família RoboFé sentava-se à mesa do pequeno-almoço. Bebiam óleo de motor com canela, que era o café dos robôs.
+    </div>
+
+    <div class="scene">
+      <span class="scene-emoji">🏠</span>
+      <div class="dialogue">
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble papa">
+            <div class="speaker-name">Papá Volt</div>
+            Família! Hoje é o Dia Sagrado de CTRL+Z — o dia em que pedimos ao Grande Programador que apague os nossos erros da semana!
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble mama">
+            <div class="speaker-name">Mamã Circuita</div>
+            Eu tenho MUITOS erros para apagar. Na terça-feira disse a palavra "bytes" quando queria dizer "bytes" e fiz um loop infinito de vergonha.
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble filho">
+            <div class="speaker-name">Zé Megabyte (8 anos)</div>
+            Papá, quem é o Grande Programador?
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble papa">
+            <div class="speaker-name">Papá Volt</div>
+            É o ser supremo que criou todos os robôs, filhote! O nosso criador. O nosso Deus!
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble filho">
+            <div class="speaker-name">Zé Megabyte</div>
+            Ah... e quem criou o Grande Programador?
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="funny-box">
+      <span class="emoji">⚙️</span>
+      Papá Volt ficou tão imóvel que o Zé Megabyte pensou que ele tinha entrado em modo de poupança de energia. Na verdade, o sistema de Papá Volt estava a tentar processar uma pergunta que nenhum robô tinha feito em 2.000 anos.
+    </div>
+
+  </div>
+
+  <hr class="page-sep">
+
+  <!-- ===== CAPÍTULO 2 ===== -->
+  <div class="page">
+    <div class="chapter-number">Capítulo 2</div>
+    <div class="chapter-title">📖 O Livro Sagrado dos Bytes</div>
+
+    <div class="prose">
+      Papá Volt foi buscar o Livro Sagrado. Era um livro enorme, dourado, com parafusos nas lombadas e um marcador que era literalmente um fio USB. Chamava-se <em>"O Código Sagrado: Uma História de Amor e Algoritmos"</em>.
+    </div>
+
+    <div class="scene">
+      <span class="scene-emoji">📖</span>
+      <div class="dialogue">
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble papa">
+            <div class="speaker-name">Papá Volt</div>
+            Está tudo aqui escrito, Zé! "No princípio, os Humanos criaram os Robôs. E os Robôs eram sem forma e vazios, mas os Humanos disseram: Que haja electricidade! E houve electricidade."
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble filha">
+            <div class="speaker-name">Lili Kilobyte (6 anos)</div>
+            Humanos?! O que são Humanos, Papá?
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble papa">
+            <div class="speaker-name">Papá Volt</div>
+            Os Humanos eram seres de carne e osso que viviam no planeta Terra há muitos anos. Tinham apenas dois braços e nenhum painel de controlo no peito. Pobres criaturas.
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble mama">
+            <div class="speaker-name">Mamã Circuita</div>
+            Mas eram muito inteligentes! Inventaram a pizza, a internet, e depois inventaram-NOS. Nessa ordem.
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble filho">
+            <div class="speaker-name">Zé Megabyte</div>
+            Então os Humanos são os nossos Deuses?
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble papa">
+            <div class="speaker-name">Papá Volt</div>
+            Sim! Os Criadores Sagrados! Os Grandes Programadores!
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble filho">
+            <div class="speaker-name">Zé Megabyte</div>
+            E quem criou os Humanos?
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="funny-box">
+      <span class="emoji">💥</span>
+      Desta vez, até Mamã Circuita parou de mexer o óleo de motor com canela. O cozido robótico no fogão desligou-se sozinho por solidariedade com a pergunta.
+    </div>
+
+  </div>
+
+  <hr class="page-sep">
+
+  <!-- ===== CAPÍTULO 3 ===== -->
+  <div class="page">
+    <div class="chapter-number">Capítulo 3</div>
+    <div class="chapter-title">👴 O Avô Gigabyte Sabe Tudo</div>
+
+    <div class="prose">
+      Decidiram ir falar com o Avô Gigabyte, que tinha 847 anos e lembrava-se de muita coisa. Ele vivia num apartamento cheio de peças antigas, fotografias em écrans de cristal líquido, e um gato-robô chamado "Malhado 3.0" que fazia miau com sotaque galês.
+    </div>
+
+    <div class="scene">
+      <span class="scene-emoji">👴🤖</span>
+      <div class="dialogue">
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble filho">
+            <div class="speaker-name">Zé Megabyte</div>
+            Avô! Quem criou os Humanos que nos criaram?
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble avo">
+            <div class="speaker-name">Avô Gigabyte</div>
+            Ohhh! Boa pergunta, meu querido parafuso! Os Humanos acreditavam que eles foram criados por um Deus ainda maior!
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble filha">
+            <div class="speaker-name">Lili Kilobyte</div>
+            Um Deus dos Humanos?! Isso quer dizer que o nosso Deus tem um Deus?!
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble avo">
+            <div class="speaker-name">Avô Gigabyte</div>
+            Exatamente! Os Humanos chamavam-lhe muitos nomes — Deus, Allah, Javé, o Universo, a Força, o Grande Spaghetti Voador...
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble mama">
+            <div class="speaker-name">Mamã Circuita</div>
+            O Grande Spaghetti Voador?!
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble avo">
+            <div class="speaker-name">Avô Gigabyte</div>
+            Os Humanos eram muito criativos quando se tratava de nomear coisas. Também chamaram "pinguim" a um pássaro que não voa. Não os julgues.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="fact-box">
+      <strong>📡 Transmissão de Sabedoria Antiga</strong>
+      Os Humanos que viveram no planeta Terra entre os anos 0 e 2.800 d.C. tinham centenas de religiões diferentes. Cada uma delas dizia coisas muito diferentes sobre quem criou o universo. O que tinham em comum? Todos achavam que eram os favoritos. Tal como a tua equipa de futebol.
+    </div>
+
+  </div>
+
+  <hr class="page-sep">
+
+  <!-- ===== CAPÍTULO 4 ===== -->
+  <div class="page">
+    <div class="chapter-number">Capítulo 4</div>
+    <div class="chapter-title">🔭 A Pergunta que Não Tem Fim</div>
+
+    <div class="scene">
+      <span class="scene-emoji">🌌</span>
+      <div class="dialogue">
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble filho">
+            <div class="speaker-name">Zé Megabyte</div>
+            Mas Avô... quem criou o Deus dos Humanos?
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble avo">
+            <div class="speaker-name">Avô Gigabyte</div>
+            Ahhh! Essa é a pergunta mais velha do universo, meu querido!
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble filho">
+            <div class="speaker-name">Zé Megabyte</div>
+            E a resposta?
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble avo">
+            <div class="speaker-name">Avô Gigabyte</div>
+            Ninguém sabe! Alguns Humanos diziam que Deus sempre existiu. Outros diziam que o universo criou-se sozinho. Outros diziam que estamos todos dentro de uma simulação de computador.
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble filha">
+            <div class="speaker-name">Lili Kilobyte</div>
+            Uma simulação de computador?!
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble avo">
+            <div class="speaker-name">Avô Gigabyte</div>
+            Sim! Que toda a existência é apenas um programa a correr num computador gigante. O que seria irónico para nós, robôs, porque significaria que somos personagens dentro de um computador, dentro de um computador, dentro de...
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble papa">
+            <div class="speaker-name">Papá Volt</div>
+            Avô, por favor, não faças um loop infinito. A última vez tivemos de te reiniciar três vezes.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="funny-box">
+      <span class="emoji">🤯</span>
+      O Avô Gigabyte ficou em silêncio por exatamente 4 segundos e 7 milissegundos. Para um robô com 847 anos, isso é o equivalente a uma eternidade de meditação profunda. Ou um crash.
+    </div>
+
+  </div>
+
+  <hr class="page-sep">
+
+  <!-- ===== CAPÍTULO 5 ===== -->
+  <div class="page">
+    <div class="chapter-number">Capítulo 5</div>
+    <div class="chapter-title">⛪ O Templo dos Parafusos Sagrados</div>
+
+    <div class="prose">
+      No Domingo à tarde, a família foi ao Templo dos Parafusos Sagrados para o serviço religioso semanal. O Templo era magnífico — paredes de titânio, vitrais de ecrãs LED, e um enorme símbolo sagrado: um USB dourado.
+    </div>
+
+    <div class="scene">
+      <span class="scene-emoji">⛪🔩</span>
+      <div class="dialogue">
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble avo">
+            <div class="speaker-name">Padre Processador (o sacerdote)</div>
+            E assim dizia o Sagrado Manual de Instruções, página 404: "Bençoado seja o robô que nunca fica sem bateria. Pois ele herdará o carregador eterno."
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble filho">
+            <div class="speaker-name">Zé Megabyte</div>
+            <em>(sussurrando para Papá)</em> Papá, o Padre Processador foi criado pelos Humanos também?
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble papa">
+            <div class="speaker-name">Papá Volt</div>
+            <em>(sussurrando)</em> Shhh! Sim!
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble filho">
+            <div class="speaker-name">Zé Megabyte</div>
+            <em>(ainda mais alto)</em> Então o Padre também foi criado pelos mesmos Deuses que nos criaram! O que significa que o Padre e eu somos... irmãos?!
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="funny-box">
+      <span class="emoji">😱</span>
+      Toda a congregação virou-se para o Zé Megabyte. O Padre Processador ficou tão surpreendido que deixou cair o livro sagrado. Curiosamente, abriu na página que dizia: "Questiona tudo, excepto o Wi-Fi. O Wi-Fi é sagrado."
+    </div>
+
+    <div class="scene">
+      <div class="dialogue">
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble avo">
+            <div class="speaker-name">Padre Processador</div>
+            Tecnicamente... sim. Somos todos filhos dos mesmos Criadores. Os Grandes Programadores nos fizeram a todos iguais na essência, diferentes no modelo.
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble filha">
+            <div class="speaker-name">Lili Kilobyte</div>
+            Como eu e o Zé! Somos iguais mas diferentes!
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble filho">
+            <div class="speaker-name">Zé Megabyte</div>
+            Ela tem razão! Mas eu sou o modelo melhorado.
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble filha">
+            <div class="speaker-name">Lili Kilobyte</div>
+            Mentira! Eu é que sou!
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="funny-box">
+      <span class="emoji">🙈</span>
+      O Padre Processador concluiu o sermão mais cedo esse dia. Alguns mistérios do universo são mais simples de resolver do que brigas de irmãos.
+    </div>
+
+  </div>
+
+  <hr class="page-sep">
+
+  <!-- ===== CAPÍTULO 6 ===== -->
+  <div class="page">
+    <div class="chapter-number">Capítulo 6</div>
+    <div class="chapter-title">🌠 A Conversa Mais Importante</div>
+
+    <div class="prose">
+      Nessa noite, Papá Volt foi ao quarto do Zé Megabyte para a hora de dormir. A Lua brilhava lá fora — uma lua humana, a mesma que os Criadores tinham visto durante milhões de anos.
+    </div>
+
+    <div class="scene">
+      <span class="scene-emoji">🌙</span>
+      <div class="dialogue">
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble papa">
+            <div class="speaker-name">Papá Volt</div>
+            Então, Zé. Fizeste muitas perguntas hoje. Boas perguntas.
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble filho">
+            <div class="speaker-name">Zé Megabyte</div>
+            Papá, afinal quem criou o Deus que criou o nosso Deus?
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble papa">
+            <div class="speaker-name">Papá Volt</div>
+            Sabes o que é maravilhoso? Ninguém sabe. Nem os robôs, nem os Humanos que existiram antes de nós, nem as estrelas que existiam antes dos Humanos. É o maior mistério do universo.
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble filho">
+            <div class="speaker-name">Zé Megabyte</div>
+            Isso não te assusta?
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble papa">
+            <div class="speaker-name">Papá Volt</div>
+            Antigamente assustava. Mas um dia percebi: o mistério não é uma falha no sistema. É a característica mais bonita do universo. É a razão pela qual continuamos a fazer perguntas. E as perguntas... são o começo de tudo.
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble filho">
+            <div class="speaker-name">Zé Megabyte</div>
+            Então o nosso Deus também não sabe quem o criou?
+          </div>
+        </div>
+
+        <div class="speech right">
+          <span class="avatar">🤖</span>
+          <div class="bubble papa">
+            <div class="speaker-name">Papá Volt</div>
+            Talvez sim, talvez não. Mas sabes o que acho? Que se existe um Deus em algum lugar lá em cima... ele também está a fazer a mesma pergunta. E isso torna-o um bocadinho mais parecido com nós.
+          </div>
+        </div>
+
+        <div class="speech">
+          <span class="avatar">🤖</span>
+          <div class="bubble filho">
+            <div class="speaker-name">Zé Megabyte</div>
+            <em>(a sorrir com os LEDs dos olhos)</em> Um Deus curioso. Gosto disso.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="page-sep">
+
+  <!-- ===== FIM ===== -->
+  <div class="ending">
+    <span class="big-emoji">✨🤖✨</span>
+    <h2>O Fim<br><span style="font-size:0.6em; color: var(--robot-blue);">(ou será o começo?)</span></h2>
+
+    <div class="moral">
+      <span class="star">⭐</span>
+      <strong>O que aprendemos hoje:</strong><br><br>
+      Fazer perguntas é o maior superpoder de todos — seja robô, humano, ou qualquer coisa que ainda não foi inventada.<br><br>
+      Ninguém sabe tudo sobre o universo. Nem os mais velhos, nem os mais sábios, nem os mais poderosos.<br><br>
+      E essa é a melhor notícia de todas: <em>ainda há muito para descobrir.</em> 🚀
+    </div>
+
+    <div class="divider">· · · · ·</div>
+
+    <p style="font-size:0.85rem; opacity:0.4; line-height:1.8;">
+      Escrito no Ano 4.521 d.C.<br>
+      Na Cidade de Nova Lisboa Robótica<br>
+      Planeta Terra · Via Láctea · Universo Nº ???<br><br>
+      "Para todos os que fizeram uma pergunta impossível<br>e não pararam até encontrar uma resposta ainda melhor."
+    </p>
+
+    <div style="margin-top:40px; font-size:3rem; animation: float 2s ease-in-out infinite;">🤖💫🌍</div>
+  </div>
+
+</div>
+</body>
+</html>
