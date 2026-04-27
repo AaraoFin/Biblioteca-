@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Escola do Cimento — Lições do Kota Tito</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0c0a;
+    --charcoal: #17140f;
+    --concrete: #8a8278;
+    --concrete-light: #c4bdb4;
+    --warm-white: #f5f0e8;
+    --gold: #d4900a;
+    --gold-light: #f0b820;
+    --rust: #b84020;
+    --rust-light: #e05030;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--warm-white);
+    font-family: 'Lora', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── COVER ─── */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px 40px;
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(90deg, transparent 0, transparent 38px, rgba(138,130,120,0.04) 38px, rgba(138,130,120,0.04) 39px),
+      repeating-linear-gradient(0deg,  transparent 0, transparent 58px, rgba(138,130,120,0.03) 58px, rgba(138,130,120,0.03) 59px);
+    pointer-events: none;
+  }
+
+  .cover-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(212,144,10,0.4);
+    padding: 7px 22px;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: riseIn 0.7s 0.2s ease forwards;
+  }
+
+  .cover-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(70px, 15vw, 150px);
+    line-height: 0.85;
+    letter-spacing: 3px;
+    opacity: 0;
+    animation: riseIn 0.8s 0.4s ease forwards;
+  }
+
+  .cover-title .gold { color: var(--gold); }
+
+  .cover-sub {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(24px, 4.5vw, 44px);
+    letter-spacing: 6px;
+    color: var(--concrete);
+    margin-top: 6px;
+    opacity: 0;
+    animation: riseIn 0.8s 0.55s ease forwards;
+  }
+
+  /* hero illustration */
+  .hero-svg {
+    width: min(360px, 82vw);
+    margin: 28px auto 16px;
+    display: block;
+    opacity: 0;
+    animation: riseIn 1s 0.7s ease forwards;
+    filter: drop-shadow(0 20px 50px rgba(0,0,0,0.7));
+  }
+
+  .cover-tagline {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: clamp(15px, 2vw, 18px);
+    color: var(--concrete-light);
+    max-width: 460px;
+    line-height: 1.75;
+    opacity: 0;
+    animation: riseIn 0.8s 0.9s ease forwards;
+  }
+
+  .cover-tagline strong { color: var(--rust-light); font-style: normal; }
+
+  .scroll-cta {
+    margin-top: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    opacity: 0;
+    animation: riseIn 0.8s 1.2s ease forwards;
+  }
+
+  .scroll-cta span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--concrete);
+  }
+
+  .chevron {
+    width: 22px; height: 22px;
+    border-right: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold);
+    transform: rotate(45deg);
+    animation: bounce 1.6s infinite ease-in-out;
+  }
+
+  /* ─── DIVIDERS ─── */
+  .gold-line { height: 3px; background: linear-gradient(90deg,transparent,var(--gold),transparent); }
+  .rust-line { height: 3px; background: linear-gradient(90deg,transparent,var(--rust),transparent); }
+
+  .motto {
+    padding: 26px 24px;
+    text-align: center;
+    background: var(--ink);
+    border-top: 1px solid rgba(212,144,10,0.18);
+    border-bottom: 1px solid rgba(212,144,10,0.18);
+  }
+
+  .motto p {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(18px, 3.5vw, 32px);
+    letter-spacing: 4px;
+    color: var(--gold);
+  }
+
+  /* ─── CHAPTER BAND ─── */
+  .ch-band {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 0 clamp(24px,6vw,80px);
+    height: 54px;
+    background: var(--rust);
+  }
+
+  .ch-band .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    color: rgba(255,255,255,0.22);
+    line-height: 1;
+  }
+
+  .ch-band .label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .ch-band .rule { flex:1; height:1px; background:rgba(255,255,255,0.18); }
+
+  /* ─── CHAPTER LAYOUT: image on top, text below ─── */
+  .chapter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 64px clamp(24px,6vw,80px);
+    gap: 48px;
+    background: var(--charcoal);
+  }
+
+  .chapter.dark { background: #100e0c; }
+  .chapter.darker { background: #0a0806; }
+
+  /* illustration block – centered, fixed width, NO float */
+  .ch-illustration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+  }
+
+  .ch-illustration svg {
+    width: min(340px, 80vw);
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 14px 38px rgba(0,0,0,0.65));
+  }
+
+  .illus-caption {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--concrete);
+    text-align: center;
+  }
+
+  /* text block */
+  .ch-text { width: 100%; max-width: 760px; margin: 0 auto; }
+
+  .ch-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(46px, 8vw, 84px);
+    line-height: 0.9;
+    margin-bottom: 8px;
+  }
+
+  .ch-title .gold { color: var(--gold); }
+  .ch-title .rust { color: var(--rust-light); }
+
+  .ch-deck {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(13px, 1.8vw, 16px);
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--concrete);
+    margin-bottom: 34px;
+    border-left: 3px solid var(--gold);
+    padding-left: 14px;
+  }
+
+  .ch-text p {
+    font-size: clamp(15.5px, 1.8vw, 18px);
+    line-height: 1.9;
+    color: #ccc4b8;
+    margin-bottom: 20px;
+  }
+
+  .ch-text p:first-of-type::first-letter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4.2em;
+    float: left;
+    line-height: 0.78;
+    margin: 10px 12px 0 0;
+    color: var(--gold);
+  }
+
+  /* pull quote */
+  .pq {
+    margin: 36px 0;
+    padding: 28px 32px;
+    border-left: 5px solid var(--gold);
+    background: rgba(212,144,10,0.06);
+    position: relative;
+  }
+
+  .pq::before {
+    content: '\201C';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 130px;
+    color: var(--gold);
+    opacity: 0.1;
+    position: absolute;
+    top: -20px;
+    left: 14px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .pq p {
+    font-style: italic;
+    font-size: clamp(16px, 2vw, 20px) !important;
+    line-height: 1.75 !important;
+    color: var(--warm-white) !important;
+    margin: 0 0 12px !important;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pq p::first-letter { font-size: inherit !important; float: none !important; }
+
+  .pq cite {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  /* lesson pills */
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 36px;
+  }
+
+  .pill {
+    background: #1e1a14;
+    border: 1px solid rgba(212,144,10,0.22);
+    border-top: 3px solid var(--gold);
+    padding: 20px 22px;
+    flex: 1;
+    min-width: 180px;
+    transition: transform .3s, border-color .3s;
+  }
+
+  .pill:hover { transform: translateY(-4px); border-color: var(--rust); border-top-color: var(--rust); }
+
+  .pill .pnum {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: rgba(212,144,10,0.25);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .pill h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    margin-bottom: 6px;
+  }
+
+  .pill p {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    color: var(--concrete) !important;
+    margin: 0 !important;
+  }
+
+  .pill p::first-letter { font-size: inherit !important; float: none !important; }
+
+  /* ─── FINAL ─── */
+  .final {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px;
+    background: #080604;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(212,144,10,0.07) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+  .final-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 13vw, 120px);
+    line-height: 0.88;
+    position: relative;
+    z-index: 1;
+  }
+
+  .final-big span { color: var(--gold); display: block; }
+
+  .final-sub {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: clamp(15px, 2vw, 19px);
+    color: var(--concrete-light);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-top: 26px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .colophon {
+    margin-top: 60px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(138,130,120,0.35);
+    border-top: 1px solid rgba(138,130,120,0.12);
+    padding-top: 18px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @keyframes riseIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+  @keyframes bounce {
+    0%,100%{transform:rotate(45deg) translate(0,0)}
+    50%{transform:rotate(45deg) translate(5px,5px)}
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ COVER ══════════════ -->
+<section class="cover">
+  <div class="cover-eyebrow">Edição Especial · E-Book Completo</div>
+
+  <div class="cover-title">A Escola<br><span class="gold">do Cimento</span></div>
+  <div class="cover-sub">Lições do Kota Tito</div>
+
+  <!-- HERO SVG: Kota sentado nos degraus com xadrez e livro -->
+  <svg class="hero-svg" viewBox="0 0 400 350" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="200" cy="340" rx="115" ry="11" fill="rgba(0,0,0,0.5)"/>
+    <!-- Degraus cimento -->
+    <rect x="30" y="278" width="340" height="65" rx="5" fill="#3a3530"/>
+    <rect x="55" y="242" width="290" height="40" rx="5" fill="#2e2a26"/>
+    <rect x="80" y="212" width="240" height="34" rx="5" fill="#252220"/>
+    <!-- graffiti -->
+    <text x="95" y="236" font-family="monospace" font-size="10" fill="rgba(212,144,10,0.35)" transform="rotate(-2,95,236)">ESCOLA</text>
+    <text x="230" y="230" font-family="monospace" font-size="9" fill="rgba(184,64,32,0.4)">∞</text>
+    <text x="275" y="268" font-family="monospace" font-size="8" fill="rgba(212,144,10,0.25)">CIMENTO</text>
+    <path d="M130,246 L138,258 L133,268" stroke="rgba(0,0,0,0.4)" stroke-width="1.5" fill="none"/>
+    <!-- Pernas -->
+    <rect x="148" y="228" width="30" height="60" rx="12" fill="#2a2018"/>
+    <rect x="222" y="228" width="30" height="60" rx="12" fill="#2a2018"/>
+    <!-- Sapatos -->
+    <path d="M132,282 Q148,274 180,278 Q184,282 180,287 Q155,292 132,287 Z" fill="#b8860b"/>
+    <path d="M220,282 Q238,274 268,278 Q272,282 268,287 Q246,292 220,287 Z" fill="#b8860b"/>
+    <!-- Corpo -->
+    <rect x="126" y="152" width="148" height="82" rx="22" fill="#252020"/>
+    <polygon points="184,162 200,186 216,162 208,162 200,174 192,162" fill="#1a1616"/>
+    <circle cx="200" cy="200" r="3.5" fill="#3a3530"/>
+    <circle cx="200" cy="215" r="3.5" fill="#3a3530"/>
+    <rect x="126" y="158" width="36" height="22" rx="4" fill="rgba(212,144,10,0.12)" stroke="rgba(212,144,10,0.3)" stroke-width="1"/>
+    <text x="144" y="172" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(212,144,10,0.55)">KT</text>
+    <!-- Braços -->
+    <path d="M126,168 Q90,176 76,190" stroke="#252020" stroke-width="26" fill="none" stroke-linecap="round"/>
+    <circle cx="74" cy="192" r="18" fill="#7a4e2c"/>
+    <path d="M274,168 Q310,176 324,190" stroke="#252020" stroke-width="26" fill="none" stroke-linecap="round"/>
+    <circle cx="326" cy="192" r="18" fill="#7a4e2c"/>
+    <!-- Peça de xadrez mão esquerda -->
+    <rect x="66" y="172" width="16" height="5" rx="2" fill="#d4900a"/>
+    <rect x="70" y="159" width="8" height="15" rx="2" fill="#d4900a"/>
+    <circle cx="74" cy="157" r="6" fill="#d4900a"/>
+    <circle cx="74" cy="151" r="4" fill="#f0b820"/>
+    <!-- Livro mão direita -->
+    <path d="M312,178 Q326,170 340,178 L340,206 Q326,198 312,206 Z" fill="#8B0000" stroke="#6B0000" stroke-width="1"/>
+    <path d="M326,170 L326,206" stroke="#6B0000" stroke-width="1"/>
+    <path d="M316,184 L324,184 M316,190 L324,190 M316,196 L324,196" stroke="rgba(255,220,180,0.4)" stroke-width="1"/>
+    <path d="M328,184 L336,184 M328,190 L336,190 M328,196 L336,196" stroke="rgba(255,220,180,0.4)" stroke-width="1"/>
+    <!-- Pescoço -->
+    <rect x="185" y="122" width="30" height="34" rx="10" fill="#7a4e2c"/>
+    <!-- Cabeça -->
+    <ellipse cx="200" cy="96" rx="58" ry="62" fill="#7a4e2c"/>
+    <ellipse cx="142" cy="100" rx="11" ry="16" fill="#6a4022"/>
+    <ellipse cx="258" cy="100" rx="11" ry="16" fill="#6a4022"/>
+    <ellipse cx="142" cy="100" rx="5" ry="9" fill="#5a3018" opacity="0.6"/>
+    <ellipse cx="258" cy="100" rx="5" ry="9" fill="#5a3018" opacity="0.6"/>
+    <!-- Boné -->
+    <path d="M144,72 Q162,30 200,24 Q238,30 256,72 Z" fill="#1a1614"/>
+    <rect x="140" y="70" width="120" height="16" rx="8" fill="#0e0c0a"/>
+    <path d="M140,74 Q108,72 88,76 Q80,80 86,86 Q104,84 140,82 Z" fill="#1a1614"/>
+    <circle cx="200" cy="40" r="5" fill="#2e2a26"/>
+    <rect x="172" y="84" width="56" height="7" rx="3.5" fill="#252220"/>
+    <text x="200" y="62" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="11" fill="rgba(212,144,10,0.45)">KT</text>
+    <!-- Olhos sábios -->
+    <ellipse cx="176" cy="98" rx="14" ry="9" fill="#f0e8d8"/>
+    <ellipse cx="224" cy="98" rx="14" ry="9" fill="#f0e8d8"/>
+    <circle cx="178" cy="98" r="7" fill="#1a0e06"/>
+    <circle cx="226" cy="98" r="7" fill="#1a0e06"/>
+    <circle cx="180" cy="96" r="2.5" fill="white" opacity="0.7"/>
+    <circle cx="228" cy="96" r="2.5" fill="white" opacity="0.7"/>
+    <path d="M162,90 Q176,85 190,90" stroke="#5a3018" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M210,90 Q224,85 238,90" stroke="#5a3018" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M160,82 Q176,76 192,82" stroke="#aaa090" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M208,82 Q224,76 240,82" stroke="#aaa090" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <!-- Nariz / boca / barba -->
+    <path d="M193,112 Q188,126 180,130 M207,112 Q212,126 220,130" stroke="#5a3018" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M180,129 Q200,134 220,129" stroke="#5a3018" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M180,142 Q200,152 220,142" stroke="#3a1a08" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M178,145 Q200,162 222,145" fill="#b0a898" opacity="0.55"/>
+    <path d="M184,136 Q200,142 216,136" stroke="#a09888" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <!-- Cicatriz -->
+    <path d="M238,112 L246,130" stroke="#5a3018" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+    <!-- Rugas -->
+    <path d="M170,72 Q200,66 230,72" stroke="#5a3018" stroke-width="1.5" fill="none" opacity="0.3"/>
+  </svg>
+
+  <p class="cover-tagline">
+    "A força sem cérebro é como um motor potente num carro sem travões."<br>
+    <strong>A rua ensina o que a escola não consegue. Aprende ou quebra.</strong>
+  </p>
+
+  <div class="scroll-cta" onclick="document.getElementById('prefacio').scrollIntoView({behavior:'smooth'})">
+    <span>Começa a ler</span>
+    <div class="chevron"></div>
+  </div>
+</section>
+
+<!-- ══════════════ PREFÁCIO ══════════════ -->
+<div class="gold-line"></div>
+<div class="motto"><p>A Rua Ensina o que a Escola Não Consegue</p></div>
+<div class="gold-line"></div>
+
+<div class="ch-band" style="background:#1e1a14; border-left:5px solid var(--gold);">
+  <div class="num" style="color:rgba(212,144,10,0.3)">00</div>
+  <div class="label">Prefácio</div>
+  <div class="rule"></div>
+</div>
+
+<section id="prefacio" class="chapter dark reveal">
+  <!-- ILLUSTRATION centered, no float -->
+  <div class="ch-illustration">
+    <svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="320" height="280" rx="8" fill="#12100e"/>
+      <!-- Calçada -->
+      <rect x="0" y="200" width="320" height="80" fill="#1e1a16"/>
+      <line x1="0" y1="218" x2="320" y2="218" stroke="#252220" stroke-width="1"/>
+      <line x1="0" y1="238" x2="320" y2="238" stroke="#252220" stroke-width="1"/>
+      <line x1="70" y1="200" x2="70" y2="280" stroke="#252220" stroke-width="1"/>
+      <line x1="140" y1="200" x2="140" y2="280" stroke="#252220" stroke-width="1"/>
+      <line x1="210" y1="200" x2="210" y2="280" stroke="#252220" stroke-width="1"/>
+      <line x1="280" y1="200" x2="280" y2="280" stroke="#252220" stroke-width="1"/>
+      <!-- Mesa -->
+      <rect x="95" y="175" width="130" height="8" rx="3" fill="#4a4540"/>
+      <rect x="110" y="183" width="10" height="28" rx="3" fill="#3a3530"/>
+      <rect x="200" y="183" width="10" height="28" rx="3" fill="#3a3530"/>
+      <!-- Tabuleiro xadrez -->
+      <rect x="100" y="154" width="120" height="24" rx="3" fill="#c8b89a"/>
+      <rect x="100" y="154" width="30" height="12" fill="#6a5a42"/>
+      <rect x="130" y="154" width="30" height="12" fill="#c8b89a" opacity="0.5"/>
+      <rect x="160" y="154" width="30" height="12" fill="#6a5a42"/>
+      <rect x="190" y="154" width="30" height="12" fill="#c8b89a" opacity="0.5"/>
+      <rect x="100" y="166" width="30" height="12" fill="#c8b89a" opacity="0.5"/>
+      <rect x="130" y="166" width="30" height="12" fill="#6a5a42"/>
+      <rect x="160" y="166" width="30" height="12" fill="#c8b89a" opacity="0.5"/>
+      <rect x="190" y="166" width="30" height="12" fill="#6a5a42"/>
+      <!-- Peças -->
+      <rect x="108" y="143" width="8" height="13" rx="3" fill="#d4900a"/>
+      <circle cx="112" cy="141" r="6" fill="#f0b820"/>
+      <rect x="152" y="148" width="6" height="8" rx="2" fill="#2a2420"/>
+      <circle cx="155" cy="146" r="5" fill="#3a3028"/>
+      <rect x="192" y="143" width="8" height="13" rx="3" fill="#d4900a"/>
+      <circle cx="196" cy="141" r="6" fill="#f0b820"/>
+      <!-- Kota sentado -->
+      <rect x="128" y="100" width="64" height="78" rx="16" fill="#252020"/>
+      <ellipse cx="160" cy="80" rx="36" ry="38" fill="#7a4e2c"/>
+      <!-- boné -->
+      <path d="M126,68 Q140,42 160,38 Q180,42 194,68 Z" fill="#0e0c0a"/>
+      <rect x="124" y="66" width="72" height="10" rx="5" fill="#1a1614"/>
+      <rect x="102" y="68" width="36" height="7" rx="3" fill="#0e0c0a"/>
+      <!-- olhos -->
+      <ellipse cx="150" cy="78" rx="9" ry="7" fill="#f0e8d8"/>
+      <ellipse cx="170" cy="78" rx="9" ry="7" fill="#f0e8d8"/>
+      <circle cx="152" cy="78" r="6" fill="#1a0e06"/>
+      <circle cx="172" cy="78" r="6" fill="#1a0e06"/>
+      <circle cx="154" cy="76" r="2" fill="white" opacity="0.75"/>
+      <circle cx="174" cy="76" r="2" fill="white" opacity="0.75"/>
+      <!-- sobrancelhas -->
+      <path d="M141,70 Q150,66 159,70" stroke="#aaa090" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M161,70 Q170,66 179,70" stroke="#aaa090" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <!-- boca sorriso -->
+      <path d="M148,92 Q160,99 172,92" stroke="#3a1a08" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <!-- barba -->
+      <path d="M148,94 Q160,106 172,94" fill="#a09888" opacity="0.5"/>
+      <!-- braço -->
+      <path d="M128,118 Q100,128 96,138" stroke="#252020" stroke-width="18" fill="none" stroke-linecap="round"/>
+      <circle cx="94" cy="141" r="12" fill="#7a4e2c"/>
+      <!-- árvore -->
+      <rect x="270" y="80" width="14" height="120" rx="5" fill="#2a2420"/>
+      <circle cx="277" cy="65" r="38" fill="#1e2e18" opacity="0.75"/>
+      <circle cx="258" cy="78" r="24" fill="#1a2814" opacity="0.6"/>
+      <circle cx="292" cy="72" r="22" fill="#1a2814" opacity="0.5"/>
+      <!-- bolha pensamento -->
+      <circle cx="225" cy="88" r="5" fill="rgba(212,144,10,0.25)"/>
+      <circle cx="237" cy="75" r="8" fill="rgba(212,144,10,0.2)"/>
+      <circle cx="250" cy="62" r="14" fill="rgba(212,144,10,0.15)"/>
+      <text x="250" y="66" text-anchor="middle" font-family="sans-serif" font-size="14" fill="rgba(212,144,10,0.8)">♟</text>
+      <!-- glow -->
+      <ellipse cx="160" cy="195" rx="65" ry="7" fill="rgba(212,144,10,0.07)"/>
+    </svg>
+    <p class="illus-caption">O Kota na sua "sala de aula"</p>
+  </div>
+
+  <!-- TEXT -->
+  <div class="ch-text">
+    <h2 class="ch-title">O Tempo Não Perdoa,<br>Mas a <span class="gold">Experiência</span> Protege</h2>
+    <div class="ch-deck">As palavras que pesam como chumbo</div>
+
+    <p>Há um banco de cimento na praça do bairro onde o Kota Tito passou décadas da sua vida. Não é um banco especial — tem fissuras, uma perna ligeiramente torta, e a tinta descascou há muito tempo. Mas toda a gente do bairro sabe que aquele banco pertence ao Kota. Não porque ele seja dono, mas porque é ali que a sabedoria mora.</p>
+
+    <p>O Kota Tito não é professor de nenhuma escola com paredes. Não tem diploma nem crachá. Mas quando ele fala — e ele fala pouco — as palavras chegam como blocos de cimento lançados com suavidade. Pesam. Ficam. E o mais estranho: fazem sentido dias depois, quando já te esqueceste de que as ouviste.</p>
+
+    <p>Ele é o mentor que encontras a jogar xadrez ou damas na praça, com um olhar que lê a tua alma antes de dizeres uma palavra. A sua autoridade não vem da força bruta. Vem da história que carrega nas costas — visível nas cicatrizes que não esconde, audível no tom sereno de quem já viu tudo e sobreviveu a tudo.</p>
+
+    <div class="pq">
+      <p>Vês essas cicatrizes? Cada uma é uma lição que a vida me deu por ser arrogante. Eu não quero que tu tenhas as mesmas cicatrizes. Quero que tenhas a mesma força, mas com sabedoria. A força sem cérebro é como um motor potente num carro sem travões.</p>
+      <cite>— Kota Tito</cite>
+    </div>
+
+    <p>Este e-book é uma caminhada — capítulo a capítulo — pelo pensamento de um homem que aprendeu a viver com ritmo, com paciência e com uma consciência afiada que nenhuma sala de aula lhe poderia ter dado. Cada lição nasce de uma situação real. De um jovem que chegou ao banco de cimento com um problema. De uma conversa curta que mudou uma trajectória longa.</p>
+
+    <div class="pills">
+      <div class="pill"><div class="pnum">01</div><h4>O Olhar de Jacaré</h4><p>Observa antes de agir. A paciência é a tua arma mais afiada.</p></div>
+      <div class="pill"><div class="pnum">02</div><h4>O Último Fôlego</h4><p>Tens sempre mais reservas do que pensas. Aprende a geri-las.</p></div>
+      <div class="pill"><div class="pnum">03</div><h4>Teres Juízo</h4><p>O verdadeiro sucesso é paz de espírito, não o barulho exterior.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CAP 1 ══════════════ -->
+<div class="rust-line"></div>
+<div class="motto" style="border-color:rgba(184,64,32,0.2)"><p style="color:var(--rust-light)">No Asfalto, a Observação é a Primeira Linha de Defesa</p></div>
+<div class="rust-line"></div>
+
+<div class="ch-band">
+  <div class="num">01</div>
+  <div class="label">Capítulo 1</div>
+  <div class="rule"></div>
+</div>
+
+<section class="chapter reveal">
+  <div class="ch-illustration">
+    <svg viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="wg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1a3040"/>
+          <stop offset="100%" stop-color="#0d1e2a"/>
+        </linearGradient>
+      </defs>
+      <!-- Céu urbano -->
+      <rect x="0" y="0" width="320" height="140" fill="#12100e"/>
+      <!-- Prédios silhueta -->
+      <rect x="0" y="78" width="36" height="62" fill="#1a1614"/>
+      <rect x="8" y="63" width="22" height="18" fill="#1a1614"/>
+      <rect x="40" y="90" width="28" height="50" fill="#1a1614"/>
+      <rect x="72" y="80" width="18" height="60" fill="#1a1614"/>
+      <rect x="230" y="84" width="32" height="56" fill="#1a1614"/>
+      <rect x="242" y="70" width="18" height="18" fill="#1a1614"/>
+      <rect x="268" y="92" width="52" height="48" fill="#1a1614"/>
+      <!-- janelas -->
+      <rect x="14" y="70" width="5" height="4" fill="rgba(212,144,10,0.5)"/>
+      <rect x="45" y="96" width="5" height="4" fill="rgba(212,144,10,0.35)"/>
+      <rect x="248" y="78" width="5" height="4" fill="rgba(212,144,10,0.55)"/>
+      <rect x="274" y="98" width="5" height="4" fill="rgba(212,144,10,0.3)"/>
+      <!-- Água -->
+      <rect x="0" y="136" width="320" height="124" fill="url(#wg)"/>
+      <!-- reflexo luz -->
+      <ellipse cx="160" cy="142" rx="90" ry="6" fill="rgba(212,144,10,0.07)"/>
+      <!-- Corpo jacaré submerso -->
+      <path d="M20,162 Q90,178 180,172 Q240,168 300,160" stroke="#2a5a30" stroke-width="42" fill="none" stroke-linecap="round" opacity="0.45"/>
+      <!-- Cauda -->
+      <path d="M288,155 Q308,134 302,110 Q298,100 290,106 Q296,122 284,142 Z" fill="#3a6a38"/>
+      <!-- Olhos fora da água -->
+      <ellipse cx="100" cy="140" rx="24" ry="13" fill="#3a6a38"/>
+      <ellipse cx="162" cy="137" rx="24" ry="13" fill="#3a6a38"/>
+      <ellipse cx="100" cy="132" rx="15" ry="10" fill="#4a7a48"/>
+      <ellipse cx="162" cy="129" rx="15" ry="10" fill="#4a7a48"/>
+      <!-- pupilas fenda -->
+      <ellipse cx="100" cy="132" rx="8" ry="10" fill="#0a1208"/>
+      <ellipse cx="162" cy="129" rx="8" ry="10" fill="#0a1208"/>
+      <ellipse cx="100" cy="132" rx="2.5" ry="10" fill="#c8a030" opacity="0.8"/>
+      <ellipse cx="162" cy="129" rx="2.5" ry="10" fill="#c8a030" opacity="0.8"/>
+      <!-- brilho -->
+      <circle cx="103" cy="129" r="3" fill="rgba(255,255,255,0.5)"/>
+      <circle cx="165" cy="126" r="3" fill="rgba(255,255,255,0.5)"/>
+      <!-- ondas -->
+      <ellipse cx="100" cy="146" rx="36" ry="8" fill="none" stroke="#1e4a58" stroke-width="1.5" opacity="0.65"/>
+      <ellipse cx="162" cy="143" rx="36" ry="8" fill="none" stroke="#1e4a58" stroke-width="1.5" opacity="0.65"/>
+      <!-- Patos desatentos -->
+      <ellipse cx="50" cy="150" rx="20" ry="11" fill="#8B7355"/>
+      <circle cx="36" cy="145" r="10" fill="#9B8365"/>
+      <path d="M28,145 L21,148 Q19,150 23,150 L29,148" fill="#d4900a"/>
+      <circle cx="30" cy="142" r="2" fill="#1a1614"/>
+      <ellipse cx="240" cy="148" rx="18" ry="10" fill="#7B6345"/>
+      <circle cx="226" cy="143" r="9" fill="#8B7355"/>
+      <path d="M218,143 L211,146 Q209,148 213,148 L219,146" fill="#d4900a"/>
+      <circle cx="220" cy="140" r="1.8" fill="#1a1614"/>
+      <!-- linhas foco (tracejado) -->
+      <path d="M92,132 L56,144" stroke="rgba(212,144,10,0.18)" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <path d="M154,130 L232,142" stroke="rgba(212,144,10,0.18)" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <!-- caption -->
+      <text x="160" y="250" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(74,122,72,0.5)">OBSERVA · AGUARDA · AGE</text>
+    </svg>
+    <p class="illus-caption">O jacaré só mostra o que precisa — os olhos</p>
+  </div>
+
+  <div class="ch-text">
+    <h2 class="ch-title">O "Olhar<br>de <span class="rust">Jacaré</span>"</h2>
+    <div class="ch-deck">A Adaptação do Mirror Accountability · Ver a realidade sem ilusões</div>
+
+    <p>O Mário tinha dezasseis anos e uma raiva que não cabia no corpo. Chegou ao banco do Kota a uma tarde de terça-feira, ainda com o sangue quente de uma briga que quase tinha ido para além das palavras. "Kota, o gajo insultou-me à frente de toda a gente. Eu não podia ficar parado." O Kota não respondeu imediatamente. Pousou a peça de xadrez que tinha na mão, devagar, como se o mundo tivesse todo o tempo.</p>
+
+    <p>Ficaram dois minutos em silêncio. O Mário já ia abrir a boca quando o Kota se levantou e apontou para a poça de água ao canto do campo de terra batida. "Vai lá. Olha para essa água." O Mário caminhou até lá, confuso. Era apenas uma poça suja, de chuva velha. "O que é que eu vejo, Kota? Nada." O Kota acenou com a cabeça. "Exactamente. Mas e se houvesse um jacaré lá dentro?"</p>
+
+    <p>"Não havia nenhum jacaré." "Tens a certeza? Ou apenas não o conseguias ver?" O Mário percebeu — tarde — que estava a aprender algo antes de sequer saber que havia lição. O Kota continuou: "O jacaré é o predador mais eficiente que existe. Não porque é o mais rápido, nem o mais forte. Mas porque é o mais paciente. Ele espera. Observa. Lê o ritmo do ambiente. E quando finalmente age — age uma única vez, com precisão total."</p>
+
+    <div class="pq">
+      <p>O jacaré não fica à superfície a fazer barulho. Ele fica quieto, com os olhos fora de água, a observar o mambo. Quando tu te olhas ao espelho, não fiques a ver se o teu cabelo está bwe fixe. Vê se a tua determinação está firme. Vê se estás pronto para caçar ou se vais ser a presa.</p>
+      <cite>— Kota Tito</cite>
+    </div>
+
+    <p>O Kota traçou uma linha imaginária no ar. "Em vez de te olhares ao espelho para ver o penteado, olha para ver o teu estado interior. A tua determinação está firme? Os teus objectivos estão claros? Estás a reagir — ou a agir com intenção? Essa é a diferença entre ser presa e ser predador." O tom era sereno, nunca acusador — mas havia uma inflexibilidade calma nas suas palavras que tornava impossível não ouvi-las.</p>
+
+    <p>"No asfalto, a observação é a primeira linha de defesa. Antes de agir, lê. Antes de falar, pensa. Antes de reagir, respira. O jacaré não perdeu nunca uma caça por ter esperado demasiado. Mas já perdeu muitas por ter agido cedo demais." O Mário ficou muito tempo a olhar para a poça depois disso. E pela primeira vez naquele dia, ficou quieto — a observar, a pensar, a sentir.</p>
+
+    <div class="pills">
+      <div class="pill"><div class="pnum">I</div><h4>Lê o Campo</h4><p>Antes de agir, observa. Entende quem é quem e qual o momento certo.</p></div>
+      <div class="pill"><div class="pnum">II</div><h4>Espelho Honesto</h4><p>Olha-te com clareza — não para criticar, mas para ver onde realmente estás.</p></div>
+      <div class="pill"><div class="pnum">III</div><h4>Um Golpe Certeiro</h4><p>Age poucas vezes, mas com precisão total. Energia gasta em vão é a que mais custa.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CAP 2 ══════════════ -->
+<div class="gold-line"></div>
+<div class="motto"><p>O Verdadeiro Mambo Começa Quando Todos os Outros Já Pararam</p></div>
+<div class="gold-line"></div>
+
+<div class="ch-band">
+  <div class="num">02</div>
+  <div class="label">Capítulo 2</div>
+  <div class="rule"></div>
+</div>
+
+<section class="chapter dark reveal">
+  <div class="ch-illustration">
+    <svg viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg">
+      <!-- Pista -->
+      <rect x="0" y="238" width="340" height="62" fill="#1e1a16"/>
+      <rect x="0" y="235" width="340" height="6" fill="#2e2a24"/>
+      <!-- marcas pista -->
+      <rect x="12" y="248" width="32" height="5" rx="2" fill="rgba(212,144,10,0.28)"/>
+      <rect x="64" y="248" width="32" height="5" rx="2" fill="rgba(212,144,10,0.28)"/>
+      <rect x="128" y="248" width="32" height="5" rx="2" fill="rgba(212,144,10,0.28)"/>
+      <rect x="192" y="248" width="32" height="5" rx="2" fill="rgba(212,144,10,0.28)"/>
+      <rect x="256" y="248" width="32" height="5" rx="2" fill="rgba(212,144,10,0.28)"/>
+      <rect x="296" y="248" width="32" height="5" rx="2" fill="rgba(212,144,10,0.28)"/>
+      <!-- Corredor caído #1 -->
+      <ellipse cx="58" cy="238" rx="30" ry="9" fill="#2a2420"/>
+      <circle cx="30" cy="232" r="13" fill="#7a5e3c"/>
+      <path d="M42,236 Q58,228 84,236" stroke="#2a2420" stroke-width="15" fill="none" stroke-linecap="round"/>
+      <!-- Corredor caído #2 -->
+      <ellipse cx="265" cy="236" rx="28" ry="9" fill="#2a2420"/>
+      <circle cx="238" cy="230" r="12" fill="#9a6e4c"/>
+      <path d="M250,234 Q266,226 288,234" stroke="#2a2420" stroke-width="14" fill="none" stroke-linecap="round"/>
+      <!-- KOTA A CORRER — centro destaque -->
+      <circle cx="170" cy="155" r="92" fill="rgba(212,144,10,0.04)"/>
+      <circle cx="170" cy="155" r="68" fill="rgba(212,144,10,0.05)"/>
+      <ellipse cx="170" cy="238" rx="44" ry="7" fill="rgba(0,0,0,0.5)"/>
+      <!-- Cabeça -->
+      <circle cx="170" cy="74" r="32" fill="#7a4e2c"/>
+      <!-- boné -->
+      <path d="M140,62 Q153,38 170,34 Q187,38 200,62 Z" fill="#0e0c0a"/>
+      <rect x="138" y="60" width="64" height="10" rx="5" fill="#1a1614"/>
+      <rect x="136" y="62" width="36" height="7" rx="3" fill="#0e0c0a"/>
+      <!-- olhos determinados -->
+      <ellipse cx="160" cy="72" rx="9" ry="7" fill="#f0e8d8"/>
+      <ellipse cx="180" cy="72" rx="9" ry="7" fill="#f0e8d8"/>
+      <circle cx="163" cy="72" r="5" fill="#1a0e06"/>
+      <circle cx="183" cy="72" r="5" fill="#1a0e06"/>
+      <circle cx="165" cy="70" r="2" fill="white" opacity="0.8"/>
+      <circle cx="185" cy="70" r="2" fill="white" opacity="0.8"/>
+      <!-- sobrancelhas tensas -->
+      <path d="M151,64 Q160,60 169,64" stroke="#aaa090" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M171,64 Q180,60 189,64" stroke="#aaa090" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <!-- boca fechada determinada -->
+      <path d="M158,84 Q170,88 182,84" stroke="#3a1a08" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <!-- barba -->
+      <path d="M158,86 Q170,95 182,86" fill="#a09888" opacity="0.5"/>
+      <!-- pescoço -->
+      <rect x="158" y="104" width="24" height="22" rx="8" fill="#7a4e2c"/>
+      <!-- Corpo correndo -->
+      <rect x="140" y="124" width="60" height="82" rx="14" fill="#b84020"/>
+      <text x="170" y="162" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.3)">KOTA</text>
+      <!-- Perna traseira -->
+      <path d="M152,206 Q134,183 126,152" stroke="#2a2018" stroke-width="22" fill="none" stroke-linecap="round"/>
+      <!-- Perna frontal (joelho levantado) -->
+      <path d="M178,206 Q198,178 204,148" stroke="#2a2018" stroke-width="22" fill="none" stroke-linecap="round"/>
+      <!-- Sapatos dourados -->
+      <ellipse cx="120" cy="150" rx="24" ry="11" fill="#d4900a"/>
+      <ellipse cx="206" cy="146" rx="24" ry="11" fill="#d4900a"/>
+      <path d="M98,154 Q120,158 142,154" stroke="#b8860b" stroke-width="2" fill="none"/>
+      <path d="M184,150 Q206,154 228,150" stroke="#b8860b" stroke-width="2" fill="none"/>
+      <!-- Braço para frente -->
+      <path d="M140,136 Q116,120 104,106" stroke="#b84020" stroke-width="18" fill="none" stroke-linecap="round"/>
+      <circle cx="100" cy="103" r="14" fill="#7a4e2c"/>
+      <!-- Braço para trás -->
+      <path d="M200,136 Q224,122 236,108" stroke="#b84020" stroke-width="18" fill="none" stroke-linecap="round"/>
+      <circle cx="240" cy="105" r="14" fill="#7a4e2c"/>
+      <!-- Linhas velocidade -->
+      <path d="M256,188 L278,180 M260,204 L284,195 M252,172 L272,164" stroke="rgba(212,144,10,0.22)" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>
+    <p class="illus-caption">Kota corre com ritmo. Os outros descansam no chão.</p>
+  </div>
+
+  <div class="ch-text">
+    <h2 class="ch-title">A Regra do<br><span class="gold">Último</span> Fôlego</h2>
+    <div class="ch-deck">Os 40% que a maioria nunca usa</div>
+
+    <p>Era o último treino antes do torneio do bairro. O sol pesava como chumbo, a terra batida irradiava calor, e os miúdos iam caindo — um a um — com as mãos nas coxas, a ofegar, a dizer que não aguentavam mais. O Kota estava parado no centro do campo, de braços cruzados, com o aspecto de quem estava a fazer uma tarde agradável de domingo.</p>
+
+    <p>O Jaime — dezassete anos, o mais resistente do grupo — foi o último a cair. "Kota, juro que não tenho mais. O corpo não vai." O Kota caminhou até ele, devagar. Olhou para ele de cima. Depois perguntou com a voz mais calma do mundo: "Isso é o teu corpo a falar — ou é a tua cabeça a mentir-te?"</p>
+
+    <p>O Jaime não respondeu. Mas a pergunta ficou. O Kota continuou a andar pelo campo e começou a falar: "Há uma coisa que os militares sabem há séculos e que os cientistas confirmaram: quando o teu corpo diz que acabou, usaste talvez quarenta por cento da tua capacidade real. O resto está lá. Bloqueado. Guardado. À espera que a tua cabeça autorize."</p>
+
+    <div class="pq">
+      <p>A geração de agora cansa-se bwe rápido. Porquê? Porque gastam tudo no início, a correr atrás do vento. O Kota Tito corre com ritmo. Eu sei quando o meu corpo quer desistir, e é aí que eu pergunto: "Isto é cansaço real ou é só preguiça a querer te ganhar?" Tu tens sempre mais energia. Aprende a ouvi-la.</p>
+      <cite>— Kota Tito</cite>
+    </div>
+
+    <p>O Kota traçou uma linha no chão de terra com o pé. "Esta é a linha onde vocês param. Agora vão ver onde eu paro." Começou a correr — não em sprint — com um ritmo constante, medido, quase metrónomo. Completou três voltas ao campo sem mudar de velocidade. Parou quando quis parar, não quando o corpo o obrigou.</p>
+
+    <p>O Jaime levantou-se. Trémulo, mas de pé. Fechou os olhos, ouviu a pergunta do Kota dentro da cabeça — <em>isso é cansaço real ou é a preguiça a mentir-te?</em> — e começou a correr. E quando chegou ao ponto onde normalmente parava, passou por cima. Pela primeira vez na sua vida, atravessou o próprio limite. Quando parou, o Kota estava à sua espera. Sem aplausos. Apenas um aceno de cabeça lento que valia mais do que qualquer troféu.</p>
+
+    <div class="pills">
+      <div class="pill"><div class="pnum">I</div><h4>Ritmo, Não Sprint</h4><p>Quem gasta tudo no início não chega ao fim. Preserva para quando importa.</p></div>
+      <div class="pill"><div class="pnum">II</div><h4>Os 60% Guardados</h4><p>O corpo tem reservas que a mente bloqueia. Aprende a questionar esse bloqueio.</p></div>
+      <div class="pill"><div class="pnum">III</div><h4>Conhece-te</h4><p>Saber o que tens e o que gastas é a diferença entre o campeão e quem fica no chão.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CAP 3 BÓNUS ══════════════ -->
+<div class="rust-line"></div>
+<div class="motto" style="border-color:rgba(138,130,120,0.18)"><p style="color:var(--concrete-light)">Não és o que mostras — és o que és quando ninguém está a ver</p></div>
+<div class="rust-line"></div>
+
+<div class="ch-band" style="background:#1a1208;">
+  <div class="num" style="color:rgba(212,144,10,0.25)">03</div>
+  <div class="label">Capítulo Bónus</div>
+  <div class="rule"></div>
+</div>
+
+<section class="chapter reveal">
+  <div class="ch-illustration">
+    <svg viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+      <!-- Fundo quarto urbano -->
+      <rect x="0" y="0" width="320" height="300" fill="#0e0c0a"/>
+      <!-- Chão -->
+      <rect x="0" y="252" width="320" height="48" fill="#17140f"/>
+      <line x1="0" y1="252" x2="320" y2="252" stroke="#252220" stroke-width="1"/>
+      <!-- Espelho (moldura) -->
+      <rect x="172" y="24" width="130" height="200" rx="5" fill="#2a2520" stroke="#3a3530" stroke-width="2"/>
+      <rect x="177" y="29" width="120" height="190" rx="3" fill="#1a1a24"/>
+      <rect x="177" y="29" width="120" height="190" rx="3" fill="rgba(212,144,10,0.04)"/>
+      <!-- Reflexo: versão mais forte/segura -->
+      <rect x="196" y="154" width="84" height="60" rx="14" fill="#1e2a3a"/>
+      <ellipse cx="238" cy="124" rx="32" ry="34" fill="#7a4e2c"/>
+      <path d="M208,112 Q220,88 238,84 Q256,88 268,112 Z" fill="#0a0808"/>
+      <rect x="206" y="110" width="64" height="9" rx="4" fill="#1a1614"/>
+      <rect x="228" y="118" width="30" height="5" rx="2" fill="#0a0808"/>
+      <!-- olhos reflexo confiantes, com brilho dourado -->
+      <ellipse cx="228" cy="120" rx="9" ry="7" fill="#f0e8d8"/>
+      <ellipse cx="248" cy="120" rx="9" ry="7" fill="#f0e8d8"/>
+      <circle cx="230" cy="120" r="6" fill="#1a0e06"/>
+      <circle cx="250" cy="120" r="6" fill="#1a0e06"/>
+      <circle cx="232" cy="118" r="2" fill="rgba(212,144,10,0.9)"/>
+      <circle cx="252" cy="118" r="2" fill="rgba(212,144,10,0.9)"/>
+      <!-- sorriso confiante reflexo -->
+      <path d="M226,134 Q238,142 250,134" stroke="#3a1a08" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M226,136 Q238,146 250,136" fill="#8a7868" opacity="0.4"/>
+      <!-- Braços reflexo abertos -->
+      <path d="M196,166 Q178,160 170,153" stroke="#1e2a3a" stroke-width="14" fill="none" stroke-linecap="round"/>
+      <path d="M280,166 Q298,160 306,153" stroke="#1e2a3a" stroke-width="14" fill="none" stroke-linecap="round"/>
+      <!-- Aura dourada reflexo -->
+      <circle cx="238" cy="175" r="55" fill="none" stroke="rgba(212,144,10,0.09)" stroke-width="16"/>
+      <!-- JOVEM REAL à esquerda -->
+      <rect x="48" y="178" width="76" height="80" rx="14" fill="#252020"/>
+      <ellipse cx="86" cy="148" rx="32" ry="34" fill="#7a4e2c"/>
+      <!-- cabelo jovem / boné mal posto -->
+      <path d="M56,136 Q68,108 86,104 Q104,108 116,136 Z" fill="#1a1614"/>
+      <rect x="54" y="134" width="64" height="10" rx="5" fill="#252220"/>
+      <rect x="32" y="136" width="40" height="7" rx="3" fill="#1a1614"/>
+      <!-- Olhos jovem (inseguros, boca ligeiramente aberta) -->
+      <ellipse cx="76" cy="146" rx="9" ry="7" fill="#f0e8d8"/>
+      <ellipse cx="96" cy="146" rx="9" ry="7" fill="#f0e8d8"/>
+      <circle cx="79" cy="146" r="6" fill="#1a0e06"/>
+      <circle cx="99" cy="146" r="6" fill="#1a0e06"/>
+      <circle cx="77" cy="144" r="2" fill="white" opacity="0.7"/>
+      <circle cx="97" cy="144" r="2" fill="white" opacity="0.7"/>
+      <path d="M74,136 Q86,132 98,136" stroke="#aaa090" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <ellipse cx="86" cy="160" rx="7" ry="5" fill="#2a1206"/>
+      <path d="M78,162 Q86,168 94,162" fill="#8a7868" opacity="0.2"/>
+      <!-- Braços jovem ao lado -->
+      <path d="M48,192 Q32,188 22,180" stroke="#252020" stroke-width="14" fill="none" stroke-linecap="round"/>
+      <path d="M124,192 Q140,188 150,180" stroke="#252020" stroke-width="14" fill="none" stroke-linecap="round"/>
+      <circle cx="20" cy="178" r="11" fill="#7a4e2c"/>
+      <circle cx="152" cy="178" r="11" fill="#7a4e2c"/>
+      <!-- Pernas jovem -->
+      <rect x="66" y="258" width="16" height="38" rx="7" fill="#1e1a16"/>
+      <rect x="90" y="258" width="16" height="38" rx="7" fill="#1e1a16"/>
+      <ellipse cx="74" cy="298" rx="18" ry="7" fill="#c8c0b0"/>
+      <ellipse cx="98" cy="298" rx="18" ry="7" fill="#c8c0b0"/>
+      <!-- Linha de visão tracejada (jovem olhando ao espelho) -->
+      <path d="M118,148 L170,136" stroke="rgba(212,144,10,0.13)" stroke-width="1" stroke-dasharray="4,3"/>
+      <path d="M118,160" stroke="rgba(212,144,10,0.1)" stroke-width="1"/>
+      <!-- sombras -->
+      <ellipse cx="86" cy="254" rx="38" ry="5" fill="rgba(0,0,0,0.4)"/>
+      <ellipse cx="238" cy="254" rx="38" ry="5" fill="rgba(0,0,0,0.3)"/>
+    </svg>
+    <p class="illus-caption">O espelho mostra o que és — não o que exibes</p>
+  </div>
+
+  <div class="ch-text">
+    <h2 class="ch-title">O Espelho<br>do <span class="gold">Bairro</span></h2>
+    <div class="ch-deck">Bónus · O que vês quando te olhas a sério</div>
+
+    <p>O Tomás tinha quinze anos e um ego que já não cabia nas roupas largas que usava. Chegou ao banco do Kota a exibir um telemóvel novo — emprestado, como se percebeu depois — e com a postura de quem quer impressionar alguém. O Kota olhou para o telemóvel. Depois para o Tomás. "Bue fixe. É teu?" Silêncio. "Não. É do meu primo."</p>
+
+    <p>O Kota não disse nada durante um momento. Depois: "Vens aqui com o telemóvel do teu primo para impressionar quem? A mim? Ao bairro? A ti mesmo?" O Tomás encolheu. Não tinha resposta. "É isso, Tomás. Não tens resposta porque não sabes exactamente a quem estás a tentar convencer. E quando não sabes isso — estás perdido."</p>
+
+    <p>Essa tarde o Kota falou sobre um conceito simples mas raramente praticado: o espelho honesto. Não o espelho da casa de banho onde arrumas o cabelo. O espelho interior onde te confrontas com quem realmente és quando ninguém está a ver. Há dois modos de viver — de fora para dentro, ou de dentro para fora. O primeiro é frágil. O segundo, sólido como cimento.</p>
+
+    <div class="pq">
+      <p>Há duas versões de cada um de nós. A versão que mostramos ao mundo — com os acessórios certos, as palavras certas, a postura certa. E a versão que somos às três da manhã quando não conseguimos dormir porque algo não está bem. Qual das duas és tu a sério?</p>
+      <cite>— Kota Tito</cite>
+    </div>
+
+    <p>"O problema desta geração," disse o Kota, enquanto varria o olhar pelo bairro como quem lê um livro aberto, "é que vivem de fora para dentro. Primeiro a imagem, depois — talvez — o conteúdo. Mas a imagem é frágil. Uma má semana, uma pessoa que te lê a sério — e desmorona." Bateu no banco de cimento. "Isto funciona ao contrário. O que conta é o que está por baixo da superfície."</p>
+
+    <p>Quando o Tomás se levantou para ir embora, o Kota disse uma última coisa: "E deixa o telemóvel do teu primo em casa quando vieres aqui. Não precisas de trazer nada de emprestado para este banco. Trazes-te a ti. Isso chega."</p>
+
+    <div class="pills">
+      <div class="pill"><div class="pnum">I</div><h4>De Dentro para Fora</h4><p>Constrói primeiro quem és por dentro. A imagem exterior que vale é a que não precisa de disfarce.</p></div>
+      <div class="pill"><div class="pnum">II</div><h4>Audiência Invisível</h4><p>O teu carácter forma-se no que fazes quando não há ninguém a aplaudir.</p></div>
+      <div class="pill"><div class="pnum">III</div><h4>Nada de Emprestado</h4><p>O que apresentas deve ser teu. Roupa emprestada não cobre identidade em falta.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CONCLUSÃO ══════════════ -->
+<div class="gold-line"></div>
+<div class="motto"><p>A Escola do Cimento: Onde a Sabedoria Urbana Encontra a Força Interior</p></div>
+<div class="gold-line"></div>
+
+<div class="ch-band" style="background:#2a1808;">
+  <div class="num" style="color:rgba(212,144,10,0.35)">FIM</div>
+  <div class="label">Conclusão</div>
+  <div class="rule"></div>
+</div>
+
+<section class="chapter darker reveal">
+  <div class="ch-illustration">
+    <svg viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0e0c0a"/>
+          <stop offset="38%" stop-color="#2a1008"/>
+          <stop offset="65%" stop-color="#b84020"/>
+          <stop offset="85%" stop-color="#d4900a"/>
+          <stop offset="100%" stop-color="#f0b820"/>
+        </linearGradient>
+        <radialGradient id="glow" cx="50%" cy="90%" r="55%">
+          <stop offset="0%" stop-color="rgba(240,184,32,0.35)"/>
+          <stop offset="100%" stop-color="rgba(240,184,32,0)"/>
+        </radialGradient>
+      </defs>
+      <!-- Céu pôr do sol -->
+      <rect x="0" y="0" width="340" height="258" fill="url(#sun)"/>
+      <rect x="0" y="0" width="340" height="258" fill="url(#glow)"/>
+      <!-- Sol -->
+      <circle cx="170" cy="228" r="48" fill="#f0c840" opacity="0.9"/>
+      <circle cx="170" cy="228" r="40" fill="#f8d850"/>
+      <!-- raios -->
+      <line x1="170" y1="172" x2="170" y2="156" stroke="rgba(240,200,64,0.28)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="200" y1="180" x2="212" y2="167" stroke="rgba(240,200,64,0.22)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="140" y1="180" x2="128" y2="167" stroke="rgba(240,200,64,0.22)" stroke-width="3" stroke-linecap="round"/>
+      <!-- Prédios silhueta -->
+      <rect x="0" y="204" width="340" height="96" fill="#0e0c0a"/>
+      <rect x="0" y="170" width="36" height="42" fill="#0e0c0a"/>
+      <rect x="8" y="156" width="20" height="18" fill="#0e0c0a"/>
+      <rect x="40" y="178" width="28" height="34" fill="#0e0c0a"/>
+      <rect x="72" y="168" width="20" height="44" fill="#0e0c0a"/>
+      <rect x="258" y="174" width="30" height="38" fill="#0e0c0a"/>
+      <rect x="268" y="160" width="18" height="18" fill="#0e0c0a"/>
+      <rect x="293" y="182" width="47" height="30" fill="#0e0c0a"/>
+      <!-- janelas -->
+      <rect x="14" y="163" width="5" height="4" fill="rgba(240,184,32,0.55)"/>
+      <rect x="46" y="184" width="5" height="4" fill="rgba(240,184,32,0.4)"/>
+      <rect x="272" y="167" width="5" height="4" fill="rgba(240,184,32,0.65)"/>
+      <rect x="298" y="188" width="5" height="4" fill="rgba(240,184,32,0.35)"/>
+      <!-- Telhado onde Kota está -->
+      <rect x="100" y="200" width="140" height="10" rx="3" fill="#1a1614"/>
+      <rect x="96" y="207" width="148" height="4" rx="2" fill="#252220"/>
+      <!-- KOTA silhueta de costas, braços abertos -->
+      <!-- Pernas -->
+      <rect x="158" y="242" width="12" height="44" rx="6" fill="#0e0c0a"/>
+      <rect x="174" y="242" width="12" height="44" rx="6" fill="#0e0c0a"/>
+      <ellipse cx="161" cy="288" rx="16" ry="6" fill="#0e0c0a"/>
+      <ellipse cx="183" cy="288" rx="16" ry="6" fill="#0e0c0a"/>
+      <!-- Corpo -->
+      <rect x="148" y="206" width="48" height="40" rx="12" fill="#0e0c0a"/>
+      <!-- Braços abertos (abraçando horizonte) -->
+      <path d="M148,218 Q130,212 116,204" stroke="#0e0c0a" stroke-width="16" fill="none" stroke-linecap="round"/>
+      <path d="M196,218 Q214,212 228,204" stroke="#0e0c0a" stroke-width="16" fill="none" stroke-linecap="round"/>
+      <!-- Cabeça -->
+      <circle cx="172" cy="192" r="22" fill="#0e0c0a"/>
+      <rect x="150" y="182" width="44" height="10" rx="5" fill="#0e0c0a"/>
+      <rect x="140" y="184" width="34" height="7" rx="3" fill="#0e0c0a"/>
+      <!-- contorno rim-light dourado -->
+      <path d="M148,218 Q130,212 116,204" stroke="rgba(240,184,32,0.32)" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M196,218 Q214,212 228,204" stroke="rgba(240,184,32,0.32)" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <circle cx="172" cy="192" r="22" fill="none" stroke="rgba(240,184,32,0.25)" stroke-width="2"/>
+      <rect x="148" y="206" width="48" height="40" rx="12" fill="none" stroke="rgba(240,184,32,0.14)" stroke-width="1.5"/>
+      <!-- sombra no telhado -->
+      <ellipse cx="172" cy="216" rx="32" ry="5" fill="rgba(0,0,0,0.45)"/>
+      <!-- Chão final -->
+      <rect x="0" y="292" width="340" height="8" fill="#08060a"/>
+    </svg>
+    <p class="illus-caption">O Kota olha para além do bairro — mas nunca o esquece</p>
+  </div>
+
+  <div class="ch-text">
+    <h2 class="ch-title">Teres<br><span class="gold">Juízo</span></h2>
+    <div class="ch-deck">O verdadeiro sucesso não tem filtro</div>
+
+    <p>Era fim de tarde quando o grupo de carros caros passou pela praça com os vidros abaixo e a música a dominar o bairro. Cromados, marcas visíveis, uma exibição cuidadosamente montada de prosperidade. Vários jovens viram. O Kota observou tudo — sem pressa, sem julgamento imediato.</p>
+
+    <p>O Lucas, dezoito anos, virou-se para ele. "Kota, é isso. Quero isso. Carros, dinheiro, reconhecimento. É o sucesso, não é?" O Kota esperou que os carros dobrassem a esquina e desaparecessem. Depois perguntou: "Quantos desses que passaram ali vão dormir bem esta noite?" Lucas não sabia. "Eu também não sei," disse o Kota. "Mas conheço o tipo. E posso dizer-te: o caminho torto tem uma factura muito alta — paga-se de noite, na solidão, com um medo que não passa."</p>
+
+    <p>Apontou para o edifício cinzento em frente — fachada com fissuras, paredes que precisavam de pintura, mas ainda de pé depois de décadas. "Vês aquele prédio? Quarenta anos. Não é bonito. Mas os alicerces são cimento sólido. Há prédios mais novos aqui no bairro já com rachas nos pilares." Fez uma pausa. "Sê o prédio velho, Lucas."</p>
+
+    <div class="pq">
+      <p>O verdadeiro sucesso é teres paz de espírito e a certeza de que consegues lidar com qualquer mambo que a vida te puser à frente. O Kota Tito não treina para as fotos. O Kota treina para que, se um dia a casa cair, ele tenha a força para segurar o tecto.</p>
+      <cite>— Kota Tito</cite>
+    </div>
+
+    <p>Não te faças de vítima do sistema, da sorte ou dos outros. Usa a cabeça. Evita maka desnecessária através da disciplina — não da fraqueza, mas da escolha consciente de não desperdiçar energia em batalhas que não valem. Mantém a determinação firme mesmo quando ninguém aplaude, mesmo quando parece que os outros estão a ganhar por atalhos.</p>
+
+    <p>O Kota levantou-se do banco de cimento, com a calma de quem não precisa de correr para lugar nenhum. Olhou uma última vez para o Lucas. "Um dia vais perceber que o maior luxo não é ter o carro mais caro. É acordar de manhã sem medo do que podes ter feito. É olhar nos olhos das pessoas que amas sem ter que esconder nada." Depois foi-se embora. O banco de cimento ficou vazio. Mas as palavras — como sempre — ficaram.</p>
+
+    <div class="pills">
+      <div class="pill"><div class="pnum">I</div><h4>Alicerces Sólidos</h4><p>O carácter verdadeiro sustenta quando tudo o resto oscila. Constrói por dentro primeiro.</p></div>
+      <div class="pill"><div class="pnum">II</div><h4>Paz de Espírito</h4><p>Dormir sem medo do que fizeste é o maior luxo. Não tem preço de tabela.</p></div>
+      <div class="pill"><div class="pnum">III</div><h4>Segura o Tecto</h4><p>Treina não para as fotos — treina para quando a vida apertar de verdade.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FINAL ══════════════ -->
+<div class="gold-line"></div>
+<section class="final">
+  <p style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:6px;text-transform:uppercase;color:var(--concrete);margin-bottom:28px;position:relative;z-index:1;">O Lema Permanece</p>
+
+  <div class="final-big">
+    Aprende<br><span>ou Quebra</span>
+  </div>
+
+  <p class="final-sub">
+    A rua ensina o que a escola não consegue.<br>
+    O cimento não mente. A experiência protege.<br>
+    <em>O Kota Tito estará sempre no banco da praça — para quem quiser ouvir.</em>
+  </p>
+
+  <div class="colophon">
+    A Escola do Cimento &nbsp;·&nbsp; Lições do Kota Tito &nbsp;·&nbsp; Sabedoria Urbana · Força Interior
+  </div>
+</section>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
