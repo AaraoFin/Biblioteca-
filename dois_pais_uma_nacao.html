@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dois Pais, Uma Nação — Angola</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Oswald:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9962A;
+    --gold-light: #E8B84B;
+    --red: #CC2222;
+    --black: #0A0A08;
+    --cream: #F5EFE0;
+    --warm-gray: #2A2520;
+    --text: #1A1612;
+    --muted: #6B6055;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    background: var(--black);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #0A0A08 0%, #1A100A 40%, #0A0A08 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 20px;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(201,150,42,0.15) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 80% 20%, rgba(204,34,34,0.10) 0%, transparent 60%);
+  }
+
+  .cover-tagline {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(10px, 1.5vw, 13px);
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+
+  .cover-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(52px, 11vw, 120px);
+    font-weight: 700;
+    line-height: 0.9;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 80px rgba(201,150,42,0.3);
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+  }
+
+  .cover-title .angola {
+    color: var(--gold);
+    display: block;
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .cover-divider {
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 32px auto;
+    opacity: 0;
+    animation: fadeUp 1s 0.7s forwards;
+  }
+
+  .cover-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 3vw, 22px);
+    font-style: italic;
+    color: rgba(245,239,224,0.75);
+    text-align: center;
+    max-width: 500px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+
+  .cover-badge {
+    margin-top: 48px;
+    display: flex;
+    gap: 24px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    color: var(--muted);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 1s 1.1s forwards;
+  }
+
+  .cover-badge span { color: var(--gold); }
+
+  .cover-flag {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    width: 70px;
+    height: 46px;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    opacity: 0;
+    animation: fadeIn 1.5s 1.5s forwards;
+  }
+  .flag-red { background: #CC0000; height: 50%; }
+  .flag-black { background: #000; height: 50%; }
+  .flag-gear {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px; height: 20px;
+    background: var(--gold);
+    clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  }
+
+  /* ── SCROLL ARROW ── */
+  .scroll-arrow {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0;
+    animation: fadeIn 1s 2s forwards;
+  }
+  .scroll-arrow span {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+  }
+  .arrow { width: 20px; height: 20px; border-right: 2px solid var(--gold); border-bottom: 2px solid var(--gold); transform: rotate(45deg); animation: bounce 1.5s infinite; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,8,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,150,42,0.2);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-brand {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: rgba(245,239,224,0.5);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── INTRO SECTION ── */
+  .intro-section {
+    background: var(--cream);
+    color: var(--text);
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .intro-section::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 600px;
+    color: rgba(201,150,42,0.06);
+    position: absolute;
+    top: -100px;
+    left: -40px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .intro-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .section-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.45em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--gold); }
+
+  .intro-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 32px;
+  }
+
+  .intro-inner p {
+    font-size: 18px;
+    line-height: 1.85;
+    color: #3A3028;
+    margin-bottom: 20px;
+  }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 48px;
+    font-family: 'Oswald', sans-serif;
+  }
+
+  .compare-table th {
+    padding: 16px 20px;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: left;
+  }
+
+  .compare-table th:nth-child(1) { color: var(--muted); background: rgba(0,0,0,0.04); }
+  .compare-table th:nth-child(2) { color: #fff; background: var(--red); }
+  .compare-table th:nth-child(3) { color: var(--text); background: var(--gold); }
+
+  .compare-table td {
+    padding: 14px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    vertical-align: top;
+    line-height: 1.5;
+    font-family: 'Libre Baskerville', serif;
+  }
+
+  .compare-table tr:nth-child(even) td { background: rgba(0,0,0,0.03); }
+  .compare-table td:nth-child(1) { font-weight: 700; color: var(--text); }
+  .compare-table td:nth-child(2) { color: #555; }
+  .compare-table td:nth-child(3) { color: #333; }
+
+  /* ── CHAPTER SECTIONS ── */
+  .chapter {
+    padding: 100px 20px;
+    position: relative;
+  }
+
+  .chapter-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .chapter-number {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(80px, 15vw, 160px);
+    font-weight: 700;
+    color: rgba(201,150,42,0.08);
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .chapter h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4vw, 42px);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 32px;
+  }
+
+  .chapter p {
+    font-size: 17px;
+    line-height: 1.9;
+    margin-bottom: 20px;
+    opacity: 0.9;
+  }
+
+  /* ── ALTERNATING CHAPTERS ── */
+  .chapter-dark {
+    background: #0F0D0A;
+    color: var(--cream);
+  }
+  .chapter-dark h2 { color: var(--gold); }
+  .chapter-dark p { color: rgba(245,239,224,0.8); }
+
+  .chapter-mid {
+    background: #161210;
+    color: var(--cream);
+  }
+  .chapter-mid h2 { color: var(--gold-light); }
+
+  .chapter-light {
+    background: var(--cream);
+    color: var(--text);
+  }
+  .chapter-light h2 { color: var(--text); }
+  .chapter-light p { color: #3A3028; }
+  .chapter-light .chapter-number { color: rgba(10,10,8,0.05); }
+  .chapter-light .section-label { color: var(--red); }
+  .chapter-light .section-label::after { background: var(--red); }
+
+  /* ── SCENE VISUAL ── */
+  .scene {
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 48px 0;
+    position: relative;
+    height: 280px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .scene-luanda {
+    background:
+      linear-gradient(to bottom, #0A1A3A 0%, #1A2A50 30%, #C06820 60%, #E08030 80%, #0A0A08 100%);
+  }
+
+  .scene-luanda::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 70%;
+    background: linear-gradient(to top, #0A0A08 0%, transparent 100%);
+  }
+
+  .scene-luanda::after {
+    content: 'LUANDA';
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    color: rgba(255,255,255,0.3);
+    position: absolute;
+    bottom: 20px; left: 20px;
+  }
+
+  /* Buildings silhouette */
+  .skyline {
+    position: absolute;
+    bottom: 40px;
+    left: 0; right: 0;
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    padding: 0 15%;
+  }
+  .building {
+    background: rgba(10,15,30,0.9);
+    border-top: 2px solid rgba(201,150,42,0.3);
+    flex: 1;
+  }
+
+  .scene-school {
+    background: linear-gradient(135deg, #1A1008 0%, #2A2010 50%, #1A1008 100%);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .scene-school::before {
+    content: '"A escola não te dá apenas um diploma;\nela dá-te a capacidade de pensar."';
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(16px, 3vw, 22px);
+    color: rgba(201,150,42,0.9);
+    text-align: center;
+    padding: 40px;
+    white-space: pre-line;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+
+  .scene-family {
+    background: linear-gradient(160deg, #2A1A08 0%, #1A1208 100%);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .scene-family::before {
+    content: '4:30';
+    font-family: 'Oswald', sans-serif;
+    font-size: 120px;
+    font-weight: 700;
+    color: rgba(201,150,42,0.08);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* ── QUOTE BLOCK ── */
+  .blockquote {
+    border-left: 4px solid var(--gold);
+    padding: 24px 32px;
+    margin: 40px 0;
+    background: rgba(201,150,42,0.06);
+    border-radius: 0 4px 4px 0;
+    position: relative;
+  }
+
+  .blockquote::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: var(--gold);
+    opacity: 0.3;
+    position: absolute;
+    top: -10px; left: 16px;
+    line-height: 1;
+  }
+
+  .blockquote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(16px, 2.5vw, 20px) !important;
+    line-height: 1.7 !important;
+    color: var(--gold-light) !important;
+    margin-bottom: 12px !important;
+    padding-top: 20px;
+  }
+
+  .blockquote cite {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  .blockquote-light {
+    background: rgba(201,150,42,0.08);
+    border-left-color: var(--gold);
+  }
+  .blockquote-light p { color: #8B6A20 !important; }
+  .blockquote-light cite { color: #AA8830; }
+
+  /* ── PRINCIPLES LIST ── */
+  .principles {
+    list-style: none;
+    margin: 32px 0;
+  }
+
+  .principles li {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(201,150,42,0.15);
+    align-items: flex-start;
+  }
+
+  .principle-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    opacity: 0.5;
+    min-width: 40px;
+    line-height: 1;
+  }
+
+  .principle-text strong {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .principle-text p {
+    font-size: 15px !important;
+    margin: 0 !important;
+    opacity: 0.75;
+  }
+
+  /* ── KIXIQUILA TABLE ── */
+  .strategy-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 40px 0;
+    font-size: 14px;
+  }
+
+  .strategy-table th {
+    background: rgba(201,150,42,0.15);
+    color: var(--gold);
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 12px;
+  }
+
+  .strategy-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(245,239,224,0.08);
+    font-family: 'Libre Baskerville', serif;
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .strategy-table td:nth-child(1) { font-weight: 700; color: var(--gold-light); }
+  .strategy-table td:nth-child(2) { color: rgba(245,239,224,0.5); font-style: italic; }
+  .strategy-table td:nth-child(3) { color: rgba(245,239,224,0.85); }
+
+  /* ── CONCLUSION ── */
+  .conclusion {
+    background: linear-gradient(180deg, #0A0A08 0%, #1A0E06 50%, #0A0A08 100%);
+    padding: 120px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .conclusion::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201,150,42,0.1) 0%, transparent 70%);
+  }
+
+  .conclusion-inner { max-width: 680px; margin: 0 auto; position: relative; }
+
+  .conclusion h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 6vw, 64px);
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 32px;
+    line-height: 1.1;
+  }
+
+  .conclusion h2 em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  .conclusion p {
+    font-size: 18px;
+    line-height: 1.9;
+    color: rgba(245,239,224,0.75);
+    margin-bottom: 20px;
+  }
+
+  .final-quote {
+    margin: 60px auto;
+    padding: 40px;
+    border: 1px solid rgba(201,150,42,0.3);
+    border-radius: 2px;
+    background: rgba(201,150,42,0.05);
+    max-width: 600px;
+  }
+
+  .final-quote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(17px, 2.5vw, 22px) !important;
+    color: var(--gold-light) !important;
+    line-height: 1.75 !important;
+    margin-bottom: 16px !important;
+  }
+
+  .final-quote cite {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .cta-trio {
+    display: flex;
+    gap: 0;
+    justify-content: center;
+    margin-top: 60px;
+    border: 1px solid rgba(201,150,42,0.3);
+    border-radius: 2px;
+    overflow: hidden;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-item {
+    flex: 1;
+    padding: 18px 12px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-right: 1px solid rgba(201,150,42,0.3);
+    text-align: center;
+  }
+  .cta-item:last-child { border-right: none; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #050503;
+    padding: 48px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(201,150,42,0.1);
+  }
+
+  footer p {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: rgba(245,239,224,0.2);
+    text-transform: uppercase;
+  }
+
+  /* ── CHALLENGE BOXES ── */
+  .challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 40px 0;
+  }
+
+  .challenge-card {
+    background: rgba(201,150,42,0.06);
+    border: 1px solid rgba(201,150,42,0.2);
+    border-radius: 4px;
+    padding: 24px;
+  }
+
+  .challenge-card h4 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .challenge-card p {
+    font-size: 13px !important;
+    margin: 0 !important;
+    line-height: 1.6 !important;
+    opacity: 0.7;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50%       { transform: rotate(45deg) translateY(6px); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    nav { padding: 0 16px; }
+    .nav-links { display: none; }
+    .chapter { padding: 70px 16px; }
+    .intro-section { padding: 70px 16px; }
+    .scene { height: 200px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <p class="cover-tagline">Um País · Dois Mundos · Uma Escolha Para o Futuro</p>
+  <h1 class="cover-title">
+    DOIS PAIS,<br>
+    <span class="angola">Uma Nação</span>
+  </h1>
+  <div class="cover-divider"></div>
+  <p class="cover-subtitle">Entre o sistema que privilegia e os valores que constroem o verdadeiro futuro.</p>
+  <div class="cover-badge">
+    <span>Inspiração</span> · <span>Consciência</span> · <span>Transformação</span>
+  </div>
+
+  <div class="cover-flag">
+    <div class="flag-red"></div>
+    <div class="flag-black"></div>
+    <div class="flag-gear"></div>
+  </div>
+
+  <div class="scroll-arrow">
+    <span>Explorar</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Dois Pais, Uma Nação</div>
+  <ul class="nav-links">
+    <li><a href="#introducao">Introdução</a></li>
+    <li><a href="#capitulo1">Cap. 1</a></li>
+    <li><a href="#capitulo3">Corrupção</a></li>
+    <li><a href="#capitulo5">Família</a></li>
+    <li><a href="#conclusao">Conclusão</a></li>
+  </ul>
+</nav>
+
+<!-- INTRO -->
+<section class="intro-section" id="introducao">
+  <div class="intro-inner">
+    <div class="section-label">Introdução</div>
+    <h2>O Contraste de Luanda</h2>
+
+    <div class="scene scene-luanda">
+      <div class="skyline">
+        <div class="building" style="height:140px"></div>
+        <div class="building" style="height:180px"></div>
+        <div class="building" style="height:120px"></div>
+        <div class="building" style="height:200px"></div>
+        <div class="building" style="height:160px"></div>
+        <div class="building" style="height:90px"></div>
+        <div class="building" style="height:170px"></div>
+        <div class="building" style="height:130px"></div>
+        <div class="building" style="height:110px"></div>
+        <div class="building" style="height:195px"></div>
+        <div class="building" style="height:75px"></div>
+        <div class="building" style="height:155px"></div>
+      </div>
+    </div>
+
+    <p>Luanda é uma cidade de extremos, onde o brilho dos arranha-céus da Marginal reflete sobre as águas do Atlântico, enquanto, a poucos quilómetros dali, a poeira dos musseques conta histórias de luta e sobrevivência. Angola é um país de riquezas imensas, mas também de desigualdades profundas.</p>
+
+    <p>Neste e-book, exploramos a jornada de um jovem angolano que se vê dividido entre dois caminhos. De um lado, o caminho do <strong>"Pai do Sistema"</strong>, onde o sucesso é medido pela influência, pelos carros de luxo e pela facilidade com que se contornam as leis através da corrupção. Do outro, o caminho do <strong>"Pai dos Valores"</strong>, onde a riqueza é construída sobre o alicerce da educação, do trabalho árduo e da integridade moral.</p>
+
+    <p>Esta é uma história sobre escolhas, sobre o que significa "ser alguém" numa sociedade que muitas vezes parece premiar o atalho em vez do esforço.</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Aspecto</th>
+          <th>O Caminho do Sistema</th>
+          <th>O Caminho dos Valores</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sucesso</td>
+          <td>Medido pela ostentação e conexões políticas</td>
+          <td>Medido pela competência e caráter</td>
+        </tr>
+        <tr>
+          <td>Educação</td>
+          <td>Um meio para obter um diploma e um cargo</td>
+          <td>Uma ferramenta para resolver problemas reais</td>
+        </tr>
+        <tr>
+          <td>Ética</td>
+          <td>Flexível, dependendo da conveniência</td>
+          <td>Inegociável, baseada em princípios ancestrais</td>
+        </tr>
+        <tr>
+          <td>Futuro</td>
+          <td>Dependente da manutenção do status quo</td>
+          <td>Construído através da inovação e resiliência</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CHAPTER 1 -->
+<section class="chapter chapter-dark" id="capitulo1">
+  <div class="chapter-number">01</div>
+  <div class="chapter-inner">
+    <div class="section-label">Capítulo Um</div>
+    <h2>O Berço de Ouro e o Berço de Palha</h2>
+
+    <p>A vida em Angola começa a ser definida muito antes do primeiro choro. Para alguns, o berço é de ouro, situado nos condomínios fechados de Talatona, onde a água corre nas torneiras e o ar condicionado silencia o calor tropical. Para outros, o berço é de palha — de chapa e bloco — nos bairros densos como o Sambizanga ou o Cazenga, onde a rotina é ditada pela busca diária pelo básico.</p>
+
+    <p>Nando cresceu observando estas duas realidades. O seu pai, <strong>Tiago</strong>, era um homem de poucas palavras e muitas ações. Professor de profissão, Tiago acreditava piamente que a caneta era mais poderosa que a arma e que o estudo era a única escada segura para sair da pobreza.</p>
+
+    <p>Em contrapartida, havia o <strong>Tio Jorge</strong>. Ele era o exemplo vivo do "sucesso" angolano aos olhos da vizinhança. Jorge tinha "esquemas" em todo o lado. Para Jorge, o mundo pertencia aos espertos, e a educação era apenas um detalhe burocrático.</p>
+
+    <div class="blockquote">
+      <p>"A verdadeira riqueza de um homem não está no que ele acumula através da ganância, mas no que ele constrói através da sua dignidade. Em Angola, ser honesto é um ato de coragem, e ser educado é um ato de rebeldia contra um sistema que nos quer ignorantes."</p>
+      <cite>— Pai Tiago</cite>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 2 -->
+<section class="chapter chapter-light" id="capitulo2">
+  <div class="chapter-number">02</div>
+  <div class="chapter-inner">
+    <div class="section-label">Capítulo Dois</div>
+    <h2>A Lição da Escola</h2>
+
+    <div class="scene scene-school" style="height:240px; border-radius:4px; margin: 0 0 40px;"></div>
+
+    <p>A educação em Angola é um campo de batalha silencioso. Nas salas de aula sobrelotadas das escolas públicas, onde o calor abafa as vozes dos professores e os manuais escolares são raros, a luta pelo conhecimento é real.</p>
+
+    <p>Tiago dizia sempre: "Nando, a escola não te dá apenas um diploma; ela dá-te a capacidade de pensar por ti próprio. O sistema quer que tu apenas obedeças, mas eu quero que tu questiones."</p>
+
+    <p>Para o "Pai do Sistema", a escola era apenas uma formalidade para conseguir um "papel" que permitisse ocupar uma cadeira num ministério. Jorge não se importava se Nando aprendia matemática ou história; ele importava-se se Nando passava de ano, não importava como.</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Desafio</th>
+          <th>Impacto na Juventude</th>
+          <th>Resposta do Pai dos Valores</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Falta de Manuais</td>
+          <td>Limita o acesso à informação e ao estudo individual</td>
+          <td>Incentiva a pesquisa em bibliotecas e a partilha de recursos</td>
+        </tr>
+        <tr>
+          <td>Corrupção Escolar</td>
+          <td>Ensina que o sucesso pode ser comprado com "gasosa"</td>
+          <td>Defende que o conhecimento real não tem preço e é intransferível</td>
+        </tr>
+        <tr>
+          <td>Infraestrutura Pobre</td>
+          <td>Desmotiva os alunos e prejudica a concentração</td>
+          <td>Ensina que a vontade de aprender supera as limitações físicas</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="blockquote blockquote-light">
+      <p>"Se tu comprares a tua nota, estarás a vender o teu futuro. Um médico que compra o diploma mata pacientes; um engenheiro que compra o diploma derruba pontes."</p>
+      <cite>— Pai Tiago</cite>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 3 -->
+<section class="chapter chapter-dark" id="capitulo3">
+  <div class="chapter-number">03</div>
+  <div class="chapter-inner">
+    <div class="section-label">Capítulo Três</div>
+    <h2>O Atalho da Corrupção — A "Gasosa"</h2>
+
+    <p>A "gasosa" é uma palavra que todos em Angola conhecem. Começa como um pequeno pedido de um polícia de trânsito e termina em desvios de milhões de dólares em contratos públicos. Para Nando, a corrupção não era algo que ele lia nos jornais; era algo que ele via nas esquinas, nos hospitais e até nos tribunais.</p>
+
+    <p>O Tio Jorge era um mestre na arte da "gasosa". Ele explicava a Nando que a corrupção era apenas o "lubrificante" da economia angolana: "Ou tu entras no jogo, ou ficas de fora a ver os outros a comerem o bife."</p>
+
+    <p>No entanto, o Pai Tiago mostrava o outro lado da moeda. A corrupção destruía as estradas que ligavam as províncias, deixava os hospitais sem medicamentos básicos e mantinha a maioria da população na miséria enquanto uma elite ostentava luxos obscenos.</p>
+
+    <div class="blockquote">
+      <p>"A corrupção é um crime organizado contra o povo. Cada kwanza que alguém rouba do Estado é um livro que falta numa escola ou uma vacina que falta num posto de saúde."</p>
+      <cite>— Pai Tiago</cite>
+    </div>
+
+    <p>À noite, quando a família se reunia para jantar um funge simples mas feito com amor, havia uma paz na casa de Tiago que Jorge, com toda a sua riqueza, nunca parecia ter. Jorge vivia em sobressalto, temendo auditorias, mudanças políticas ou a traição dos seus próprios cúmplices.</p>
+  </div>
+</section>
+
+<!-- CHAPTER 4 -->
+<section class="chapter chapter-mid" id="capitulo4">
+  <div class="chapter-number">04</div>
+  <div class="chapter-inner">
+    <div class="section-label">Capítulo Quatro</div>
+    <h2>O Estilo de Vida dos "Poderosos"</h2>
+
+    <p>Em Luanda, a riqueza não se esconde; ela grita. São os jipes de última geração que ignoram os buracos das estradas, as mansões em condomínios de luxo que parecem cidades europeias transplantadas para a África, e as viagens constantes ao Dubai ou a Lisboa para compras de fim de semana.</p>
+
+    <p>Nando acompanhou o Tio Jorge a uma festa num desses condomínios. Garrafas de champanhe que custavam o salário anual do seu pai eram abertas com indiferença. A conversa girava em torno de contratos, influências e quem tinha o "padrinho" mais forte no governo.</p>
+
+    <table class="strategy-table">
+      <thead>
+        <tr>
+          <th>Elemento</th>
+          <th>O Que Representa</th>
+          <th>Olhar do Pai dos Valores</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Carros de Luxo</td>
+          <td>Status e poder imediato sobre os outros</td>
+          <td>Um meio de transporte, não uma extensão do ego</td>
+        </tr>
+        <tr>
+          <td>Festas Exorbitantes</td>
+          <td>Demonstração de riqueza para ganhar influência</td>
+          <td>Desperdício de recursos que poderiam ajudar a comunidade</td>
+        </tr>
+        <tr>
+          <td>Conexões de Elite</td>
+          <td>"Quem tens" é mais importante que "quem és"</td>
+          <td>O caráter é a única conexão que realmente importa</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Nando percebia que aquela riqueza era frágil, construída sobre areia movediça. Se o "padrinho" caísse, tudo aquilo desapareceria. Era uma vida de aparências, onde o medo de ser "descoberto" ou "substituído" pairava sempre no ar.</p>
+  </div>
+</section>
+
+<!-- CHAPTER 5 -->
+<section class="chapter chapter-light" id="capitulo5">
+  <div class="chapter-number">05</div>
+  <div class="chapter-inner">
+    <div class="section-label">Capítulo Cinco</div>
+    <h2>A Rotina da Família Humilde</h2>
+
+    <div class="scene scene-family" style="height: 220px; border-radius:4px; margin-bottom: 40px;">
+      <p style="position:relative; z-index:1; font-family:'Oswald',sans-serif; font-size:13px; letter-spacing:0.3em; color:var(--gold); text-align:center; padding:20px;">A DIGNIDADE NÃO ESTÁ NO CARRO QUE CONDUZES,<br>MAS NA RAZÃO PELA QUAL ACORDAS TODOS OS DIAS</p>
+    </div>
+
+    <p>Enquanto os poderosos dormiam até tarde nos seus lençóis de seda, a família de Nando já estava de pé. O dia começava às <strong>4:30 da manhã</strong>. A mãe de Nando, Dona Maria, preparava o pequeno-almoço enquanto o rádio passava as notícias do dia. O cheiro do café e do pão fresco era o sinal de que a luta ia começar.</p>
+
+    <p>O "candongueiro" — as carrinhas azuis e brancas que são as artérias de Luanda — era onde a verdadeira Angola se encontrava. Nando via o seu pai enfrentar as filas intermináveis, o calor sufocante e o trânsito caótico com uma paciência de Job.</p>
+
+    <ul class="principles">
+      <li>
+        <span class="principle-num">1</span>
+        <div class="principle-text">
+          <strong>Respeito aos Mais Velhos</strong>
+          <p>A palavra do avô era lei. A sabedoria ancestral era valorizada acima de qualquer inovação tecnológica.</p>
+        </div>
+      </li>
+      <li>
+        <span class="principle-num">2</span>
+        <div class="principle-text">
+          <strong>Solidariedade Comunitária</strong>
+          <p>Se um vizinho não tinha comida, a Dona Maria partilhava o pouco que tinham. "Hoje por ti, amanhã por mim."</p>
+        </div>
+      </li>
+      <li>
+        <span class="principle-num">3</span>
+        <div class="principle-text">
+          <strong>Disciplina no Estudo</strong>
+          <p>Depois do jantar, a mesa transformava-se em sala de aula. Tiago revisava os exercícios de Nando, não aceitando nada menos que o esforço máximo.</p>
+        </div>
+      </li>
+      <li>
+        <span class="principle-num">4</span>
+        <div class="principle-text">
+          <strong>Fé e Esperança</strong>
+          <p>Independentemente das dificuldades, a família mantinha a fé de que dias melhores viriam através do trabalho honesto.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- CHAPTER 6 -->
+<section class="chapter chapter-dark" id="capitulo6">
+  <div class="chapter-number">06</div>
+  <div class="chapter-inner">
+    <div class="section-label">Capítulo Seis</div>
+    <h2>Educação Financeira à Angolana</h2>
+
+    <p>Muitos pensam que educação financeira é apenas para quem tem muito dinheiro, mas o Pai Tiago ensinou a Nando que é justamente quem tem pouco que precisa de ser um mestre nas finanças. Em Angola, onde a inflação é uma sombra constante e o kwanza flutua como as ondas da Ilha do Cabo, saber gerir o dinheiro é uma questão de sobrevivência.</p>
+
+    <div class="blockquote">
+      <p>"A Kixiquila não é apenas sobre dinheiro. É sobre confiança, compromisso e a força do coletivo. É o nosso banco, onde o juro é a solidariedade."</p>
+      <cite>— Pai Tiago sobre a Kixiquila</cite>
+    </div>
+
+    <table class="strategy-table">
+      <thead>
+        <tr>
+          <th>Estratégia</th>
+          <th>Visão do Pai do Sistema (Jorge)</th>
+          <th>Visão do Pai dos Valores (Tiago)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Poupança</td>
+          <td>Gastar tudo para mostrar que se tem</td>
+          <td>Guardar uma parte, por menor que seja, para o futuro</td>
+        </tr>
+        <tr>
+          <td>Investimento</td>
+          <td>Investir em esquemas de lucro rápido e duvidoso</td>
+          <td>Investir em educação, livros e pequenas ferramentas</td>
+        </tr>
+        <tr>
+          <td>Dívida</td>
+          <td>Pedir emprestado para manter as aparências</td>
+          <td>Evitar dívidas de consumo; só pedir se for para produzir</td>
+        </tr>
+        <tr>
+          <td>Riqueza</td>
+          <td>Ter muitas coisas — Passivos</td>
+          <td>Ter muitas capacidades e ativos produtivos</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CHAPTER 7 -->
+<section class="chapter chapter-mid" id="capitulo7">
+  <div class="chapter-number">07</div>
+  <div class="chapter-inner">
+    <div class="section-label">Capítulo Sete</div>
+    <h2>O Crime Organizado e a Juventude</h2>
+
+    <p>A juventude angolana vive numa encruzilhada. Com taxas de desemprego elevadas e um sistema que muitas vezes parece fechado para quem não tem "cunhas", a tentação do crime organizado é uma realidade palpável.</p>
+
+    <p>O crime organizado em Angola não se limita aos "grupos de bairro". Ele estende-se a redes que utilizam os jovens como peões em jogos de poder muito maiores. O Tio Jorge, com a sua rede de influências, era uma porta de entrada para esse mundo.</p>
+
+    <p>Tiago alertava para o custo invisível dessas escolhas:</p>
+
+    <div class="challenge-grid">
+      <div class="challenge-card">
+        <h4>Perda da Liberdade</h4>
+        <p>Uma vez dentro do sistema, é quase impossível sair sem cicatrizes.</p>
+      </div>
+      <div class="challenge-card">
+        <h4>Destruição da Reputação</h4>
+        <p>Em Angola, o nome de uma família é o seu maior património. Um erro pode manchar gerações.</p>
+      </div>
+      <div class="challenge-card">
+        <h4>Perigo Constante</h4>
+        <p>Quem vive pela espada, pela espada morre. A vida no crime é curta e cheia de traições.</p>
+      </div>
+      <div class="challenge-card">
+        <h4>Impacto Social</h4>
+        <p>Cada jovem que entra para o crime é uma mente que deixa de contribuir para a reconstrução do país.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 8 -->
+<section class="chapter chapter-light" id="capitulo8">
+  <div class="chapter-number">08</div>
+  <div class="chapter-inner">
+    <div class="section-label">Capítulo Oito</div>
+    <h2>O Caminho da Honestidade</h2>
+
+    <p>Escolher o caminho da honestidade em Angola é, muitas vezes, escolher o caminho mais longo e íngreme. Nando via o seu pai, Tiago, recusar ofertas que poderiam ter mudado a vida financeira da família num piscar de olhos.</p>
+
+    <div class="blockquote blockquote-light">
+      <p>"A honestidade não é uma política; é um estado de espírito. Se eu aceitar hoje, amanhã não poderei olhar nos teus olhos e ensinar-te a ser um homem de bem. A minha integridade é o único legado que ninguém pode tirar-me."</p>
+      <cite>— Pai Tiago</cite>
+    </div>
+
+    <p>Este capítulo explora como o empreendedorismo ético pode florescer mesmo num ambiente adverso:</p>
+
+    <ul class="principles">
+      <li>
+        <span class="principle-num" style="color:var(--red); opacity:0.7">→</span>
+        <div class="principle-text">
+          <strong>Identificar Necessidades Reais</strong>
+          <p>Em vez de procurar "esquemas", focar em resolver problemas da comunidade — água, energia, educação, logística.</p>
+        </div>
+      </li>
+      <li>
+        <span class="principle-num" style="color:var(--red); opacity:0.7">→</span>
+        <div class="principle-text">
+          <strong>Transparência como Diferencial</strong>
+          <p>Num mercado onde a corrupção é a norma, ser conhecido como alguém de confiança atrai clientes e parceiros de longo prazo.</p>
+        </div>
+      </li>
+      <li>
+        <span class="principle-num" style="color:var(--red); opacity:0.7">→</span>
+        <div class="principle-text">
+          <strong>Resiliência</strong>
+          <p>Saber que haverá obstáculos colocados pelo "sistema", mas manter o foco na visão de longo prazo.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- CHAPTER 9 -->
+<section class="chapter chapter-dark" id="capitulo9">
+  <div class="chapter-number">09</div>
+  <div class="chapter-inner">
+    <div class="section-label">Capítulo Nove</div>
+    <h2>Ser Alguém na Vida</h2>
+
+    <p>O que significa, afinal, "ser alguém" em Angola? Para o Tio Jorge, era ter o nome na lista dos convidados VIP e uma conta bancária recheada, não importava a origem. Para o Pai Tiago, era ser uma pessoa que faz a diferença, que deixa o mundo um pouco melhor do que o encontrou.</p>
+
+    <p>Nando chegou à conclusão de que o sucesso não é um destino, mas um processo de crescimento contínuo. A educação formal era apenas o começo; a verdadeira educação era a autoeducação — ler, observar, aprender novas competências e, acima de tudo, manter os princípios.</p>
+
+    <table class="strategy-table">
+      <thead>
+        <tr>
+          <th>Definição</th>
+          <th>O Homem do Sistema (Jorge)</th>
+          <th>O Homem de Valores (Tiago/Nando)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Poder</td>
+          <td>Capacidade de dominar e comprar os outros</td>
+          <td>Capacidade de inspirar e servir os outros</td>
+        </tr>
+        <tr>
+          <td>Legado</td>
+          <td>Bens materiais que se dissipam com o tempo</td>
+          <td>Valores e conhecimentos que perduram por gerações</td>
+        </tr>
+        <tr>
+          <td>Felicidade</td>
+          <td>Dependente da próxima conquista ou objeto</td>
+          <td>Encontrada na paz interior e nos laços familiares</td>
+        </tr>
+        <tr>
+          <td>Impacto</td>
+          <td>Extrair o máximo possível da sociedade</td>
+          <td>Contribuir com o máximo possível para a sociedade</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<section class="conclusion" id="conclusao">
+  <div class="conclusion-inner">
+    <div class="section-label" style="justify-content:center; color:var(--gold);">Conclusão</div>
+    <h2>O Futuro nas <em>Tuas</em> Mãos</h2>
+
+    <p>Angola é uma terra de promessas e de desafios colossais. A história de Nando, do Pai Tiago e do Tio Jorge é a história de milhões de angolanos que, todos os dias, enfrentam a mesma escolha: o atalho ou o caminho? O sistema ou os valores?</p>
+
+    <p>A nova geração de angolanos tem uma oportunidade única. Com acesso à informação e uma consciência global, eles podem quebrar o ciclo da dependência e da corrupção. Estudar para ser alguém não é apenas sobre ter um emprego; é sobre ter a liberdade de construir o seu próprio destino.</p>
+
+    <div class="final-quote">
+      <p>"O sol nasce para todos em Angola, mas só aqueles que se preparam durante a noite estão prontos para aproveitar a luz do dia. Escolhe os teus valores, escolhe o teu caminho, e nunca deixes que ninguém te diga que ser honesto é uma fraqueza. É, na verdade, a tua maior força."</p>
+      <cite>— Nando</cite>
+    </div>
+
+    <p>O futuro de Angola não está nos escritórios luxuosos de Talatona, nem nos esquemas obscuros dos poderosos. O futuro está nas mãos do jovem que estuda à luz de uma vela, na mãe que vende na zunga para pagar a escola dos filhos, e no pai que ensina que a honra vale mais que o ouro.</p>
+
+    <p style="font-family:'Oswald',sans-serif; font-size:clamp(18px,3vw,26px); letter-spacing:0.15em; color:var(--gold); text-transform:uppercase; margin-top:40px;">O FUTURO ESTÁ EM TI.</p>
+
+    <div class="cta-trio">
+      <div class="cta-item">Inspiração</div>
+      <div class="cta-item">Consciência</div>
+      <div class="cta-item">Transformação</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Dois Pais, Uma Nação &nbsp;·&nbsp; Angola &nbsp;·&nbsp; Somos Todos Nós</p>
+</footer>
+
+</body>
+</html>
